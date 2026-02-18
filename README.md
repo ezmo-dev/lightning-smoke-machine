@@ -3,6 +3,7 @@
 → Trigger a smoke machine with a Bitcoin Lightning payment built with an ESP32, BTCPay Server + Blink, and BitcoinSwitch.
 
 ![cover](./assets/cover.webp)
+*⚡ Real test on the main stage at Plan ₿ Forum, San Salvador 2025*
 
 - **Level:** Intermediate
 - **Estimated time:** 2-3 hours
