@@ -3,7 +3,7 @@ name: Lightning Smoke Machine
 description: Déclenchez une machine à fumée avec un paiement Lightning via ESP32.
 ---
 
-![cover-lightning-smoke-machine](assets/cover.webp)
+![cover-lightning-smoke-machine](/assets/cover.webp)
 
 ## Introduction
 
@@ -38,28 +38,28 @@ Transforme une machine à fumée classique en dispositif payable en Bitcoin via 
 - 1 Microcontrôleur - ESP32-WROOM-32 
 *L'ESP32-WROOM-32 est un microcontrôleur WiFi/Bluetooth compact et peu coûteux qui permet de connecter des appareils électroniques à Internet et de les contrôler à distance.*
 
-![ESP32](assets/1.webp)
+![ESP32](/assets/1.webp)
 
 - 1 Module relais - 5V avec optocoupleur
 *Un relais, c'est comme un interrupteur que l'ESP32 peut actionner pour allumer ou éteindre la machine à fumée.*
 
-![relay](assets/2.webp)
+![relay](/assets/2.webp)
 
 - ~10 Câbles Dupont - Mâle/Mâle et Mâle/Female
 
-![dupont-cables](assets/3.webp)
+![dupont-cables](/assets/3.webp)
 
 - 1 Alimentation pour l'ESP32 - 5V USB ou batterie Li-Po
 
-![battery](assets/4.webp)
+![battery](/assets/4.webp)
 
 - 1 Cable micro-USB - connexion entre l'ESP32 et son alimentation
 
-![micro-usb-cables](assets/5.webp)
+![micro-usb-cables](/assets/5.webp)
 
 - 1 Machine à fumée 220V avec télécommande à pile 12V
 
-![remote-and-smoke-machine](assets/6.webp)
+![remote-and-smoke-machine](/assets/6.webp)
 
 - 1 bouteille de liquide compatible avec votre machine à fumée
 
@@ -77,7 +77,7 @@ Transforme une machine à fumée classique en dispositif payable en Bitcoin via 
 
 ## Architecture du système
 
-![architecture-lightning-smoke-machine](assets/7.webp)
+![architecture-lightning-smoke-machine](/assets/7.webp)
 
 ---
 
