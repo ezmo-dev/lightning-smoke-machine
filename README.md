@@ -13,7 +13,7 @@
 
 | Language | Link |
 |---|---|
-| 🇫🇷 Français | [docs/tutorial.md](./docs/tutorial.md) |
+| 🇫🇷 Français | [docs/tutorial.md](./docs/fr/tutorial.md) |
 | 🇬🇧 English | *coming soon* |
 
 ## How it works
