@@ -96,3 +96,73 @@ Ce projet implique une machine à fumée branchée sur **secteur 220V**. Une er
 Si vous n'êtes pas à l'aise avec ces manipulations, faites-vous accompagner par quelqu'un qui a l'expérience.
 
 ---
+
+## PARTIE 1 : Montage Hardware
+
+### Étape 1 : Préparation de la télécommande
+
+Objectif : Connecter le relais au bouton ON/OFF de la télécommande
+1. Ouvrir la télécommande 
+    - Identifier le bouton ON/OFF
+    - Dévisser le boîtier pour ouvrir la télécommande 
+2. Repérer les connexions
+	- Localisez les bornes + et - du bouton 
+	- Testez la continuité au multimètre (optionnel)
+
+![smoke-machine-remote](/assets/8.webp)
+
+3. Câblage du bouton (soudure ou connecteurs)
+    - Souder un câble noir sur la borne - du bouton
+    - Souder un câble rouge sur la borne + commune
+
+![smoke-machine-remote](/assets/9.webp)
+
+### Étape 2 : Connexion au module relais
+
+**Rappel : Terminologie du relais**
+
+| **Terminal**         | **Description**           | **Fonction**                        |
+| -------------------- | ------------------------- | ----------------------------------- |
+| NO (Normally Open)   | Circuit ouvert par défaut | Se ferme quand le relais est activé |
+| NC (Normally Closed) | Circuit fermé par défaut  | S'ouvre quand le relais est activé  |
+| COM (Common)         | Terminal central          | Bascule entre NO et NC              |
+
+**Câblage de la télécommande vers le module relais :**
+- Fil noir du bouton ON/OFF **→** NO (Normally Open)
+- Fil rouge (commun) **→** COM (Common)
+
+**Logique :** 
+Quand l'ESP32 active le relais, il relie COM et NO, ça revient exactement à appuyer sur le bouton de la télécommande. 
+Quand l'ESP32 coupe le relais, COM et NO se séparent, ça revient à relâcher le bouton. 
+
+![remote-relay](/assets/10.webp)
+
+### Étape 3 : Connexion de l'ESP32 au module relais
+
+**Schéma de câblage :**
+
+| **ESP32** | **→** | **Module relais** |
+| --------- | ----- | ----------------- |
+| V5 (5V)   | **→** | VCC               |
+| GND       | **→** | GND               |
+| GPIO 21   | **→** | IN (Input)        |
+
+**Vérification :**
+- VCC et GND bien connectés (polarité)
+- GPIO 21 utilisé pour le signal de commande 
+- Pas de court-circuit visible 
+
+![relay-esp32](/assets/11.webp)
+
+**Checkpoint Hardware**
+
+Avant de passer au logiciel, vérifiez : 
+- Télécommande câblée correctement 
+- Module relais connecté à l'ESP32
+- Pas de fils dénudés touchant d'autres composants
+- 220V toujours débranchés
+
+![relay-esp32](/assets/12.webp)
+
+
+
