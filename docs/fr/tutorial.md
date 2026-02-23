@@ -221,24 +221,26 @@ Nous prendrons *Blink* comme exemple, mais *BTCPay Server* propose également *S
    
    - Donnez un nom à votre API Key et laissez les paramètres par défaut. Puis, à la troisième étape notez précieusement votre API Key, vous ne la verrez qu'une seule fois : `blink_mZ5KxxxxxxxxxxxxxxxNbmX` 
 
-  ![blink-api](assets/fr/21.webp)
+  ![blink-api](/assets/21.webp)
 
    - Une fois créée, vous devez la voir apparaître dans votre liste d'API Key active. 
 
-![blink-api](assets/fr/22.webp)
+![blink-api](/assets/22.webp)
 
 **3 - Connecter *Blink* à *BTCPay Server***
 - Ouvrez votre *BTCPay Server*
 - Naviguez vers : *Wallet* **→** *Lightning*
 
-![btcpay-server](assets/fr/23.webp)
+![btcpay-server](/assets/23.webp)
 
 - Cliquez sur *Use a custom node*
 - Collez la chaîne de connexion suivante : 
 
+
 ```
 type=blink;server=https://api.blink.sv/graphql;api-key=blink_mZ5KxxxxxxxxNbmX;wallet-id=0a3fc465-082xxxxxxxxxx-2545595d856f
 ```
+
 
 **⚠️** **Important** : 
 - Ne modifiez pas la première partie : `type=blink;server=https://api.blink.sv/graphql`;
@@ -247,35 +249,35 @@ type=blink;server=https://api.blink.sv/graphql;api-key=blink_mZ5KxxxxxxxxNbmX;wa
     - wallet-id= *par votre ID de wallet Blink*
 - Cliquez ensuite sur *Test connexion*, puis sur *Save*
 
-![btcpay-server](assets/fr/24.webp)
+![btcpay-server](/assets/24.webp)
  
  - Vérifiez que la connexion est établie (statut vert)
 
-![btcpay-server](assets/fr/25.webp)
+![btcpay-server](/assets/25.webp)
 
 **4 - Créer un Point of Sale (PoS)**
 - Dans BTCPay Server, allez dans l'onglet *Plugins* et cliquez sur *Point of sale*
 
-![btcpay-server](assets/fr/26.webp)
+![btcpay-server](/assets/26.webp)
 
 - Donner un nom à votre PoS et cliquer sur *Create*
 
-![btcpay-server](assets/fr/27.webp)
+![btcpay-server](/assets/27.webp)
 
 - Configuration du PoS :
     - Choose a point of sale style = *Print display*
     - Currency = *SATS*
     - Cliquez sur *SAVE*
-
-![btcpay-server](assets/fr/28.webp)
+  
+![btcpay-server](/assets/28.webp)
 
 - Configuration du produit :
     - Supprimer tous les produit présents par défaut
     - Cliquez ensuite sur *add item*
 
-![btcpay-server](assets/fr/29.webp)
+![btcpay-server](/assets/29.webp)
 
-![btcpay-server](assets/fr/30.webp)
+![btcpay-server](/assets/30.webp)
 
 - Configurez le produit : 
     - Title : *smoke-machine*
@@ -284,6 +286,6 @@ type=blink;server=https://api.blink.sv/graphql;api-key=blink_mZ5KxxxxxxxxNbmX;wa
     - Bitcoin switch duration (en millisecondes) : 5000
     - Cliquez sur *Close* puis sur *Save* pour enregistrer le nouveau produit
 
-![btcpay-server](assets/fr/31.webp)
+![btcpay-server](/assets/31.webp)
 
 
