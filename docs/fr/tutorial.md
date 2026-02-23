@@ -165,4 +165,125 @@ Avant de passer au logiciel, vérifiez :
 ![relay-esp32](/assets/12.webp)
 
 
+---
+
+
+## PARTIE 2 : Configuration Logicielle
+
+Nous prendrons *Blink* comme exemple, mais *BTCPay Server* propose également *Strike, Breez et Boltz* si vous préférez une autre option. 
+
+### Étape 1 : Plugins, Installation *BitcoinSwitch* + *Blink
+
+1 - Rendez-vous sur votre instance *BTCPay Server* avec un compte admin
+
+2 - Créer votre premier store
+
+3 - Dans la partie gauche de *BTCPay Server*, faire défiler jusqu'en bas et aller dans *"Manage Plugins"*
+
+![btcpay-plugins](/assets/13.webp)
+
+4 - Nous allons installer le plugins *BitcoinSwitch* ainsi que *Blink* 
+
+![btcpay-plugins](/assets/14.webp)
+
+5 - Faire dérouler la liste des plugins et cliquer sur *"Install"* : *BitcoinSwitch et Blink* (ou le wallet disponible de votre choix)
+
+![btcpay-plugins](/assets/15.webp)
+
+6 - Une fois l'installation faite, redémarrer *BTCPay Server* et attendre 1 minute que l'instance redémarre
+
+![btcpay-plugins](/assets/16.webp)
+
+7 - Lorsque vous retournez dans *"Manage plugins"*, vérifiez que les deux plugins ont bien été installés
+
+![btcpay-plugins](/assets/17.webp)
+
+### Étape 2 : Backend : Configuration *BTCPay Server + Blink*
+
+**1 - Créer un wallet *Blink***
+- Rendez-vous sur https://www.blink.sv
+- Créez votre compte. Pour ça, vous pouvez vous référer au tutoriel : 
+
+[https://planb.academy/tutorials/wallet/mobile/blink-7ea5f5a4-e728-4ff9-b3f9-cf20aa6fc2bd)
+
+**2 - Générer un clé API *Blink***
+- Accédez à l'interface API : **[https://www.blink.sv/en/api](https://www.blink.sv/en/api)** et connectez vous avec le même compte que lors de la création de votre wallet *Blink*
+
+![blink-api](/assets/18.webp)
+   
+   - Une fois connecté, aller dans l'onglet *API Keys* 
+
+![blink-api](/assets/19.webp)
+   
+   - Cliquez sur *" + "* en haut à droite pour accéder à la configuration de votre API Key
+
+![blink-api](/assets/20.webp)
+   
+   - Donnez un nom à votre API Key et laissez les paramètres par défaut. Puis, à la troisième étape notez précieusement votre API Key, vous ne la verrez qu'une seule fois : `blink_mZ5KxxxxxxxxxxxxxxxNbmX` 
+
+  ![blink-api](assets/fr/21.webp)
+
+   - Une fois créée, vous devez la voir apparaître dans votre liste d'API Key active. 
+
+![blink-api](assets/fr/22.webp)
+
+**3 - Connecter *Blink* à *BTCPay Server***
+- Ouvrez votre *BTCPay Server*
+- Naviguez vers : *Wallet* **→** *Lightning*
+
+![btcpay-server](assets/fr/23.webp)
+
+- Cliquez sur *Use a custom node*
+- Collez la chaîne de connexion suivante : 
+
+```
+type=blink;server=https://api.blink.sv/graphql;api-key=blink_mZ5KxxxxxxxxNbmX;wallet-id=0a3fc465-082xxxxxxxxxx-2545595d856f
+```
+
+**⚠️** **Important** : 
+- Ne modifiez pas la première partie : `type=blink;server=https://api.blink.sv/graphql`;
+- Remplacez uniquement : 
+    - api-key= *par votre clé API Blink*
+    - wallet-id= *par votre ID de wallet Blink*
+- Cliquez ensuite sur *Test connexion*, puis sur *Save*
+
+![btcpay-server](assets/fr/24.webp)
+ 
+ - Vérifiez que la connexion est établie (statut vert)
+
+![btcpay-server](assets/fr/25.webp)
+
+**4 - Créer un Point of Sale (PoS)**
+- Dans BTCPay Server, allez dans l'onglet *Plugins* et cliquez sur *Point of sale*
+
+![btcpay-server](assets/fr/26.webp)
+
+- Donner un nom à votre PoS et cliquer sur *Create*
+
+![btcpay-server](assets/fr/27.webp)
+
+- Configuration du PoS :
+    - Choose a point of sale style = *Print display*
+    - Currency = *SATS*
+    - Cliquez sur *SAVE*
+
+![btcpay-server](assets/fr/28.webp)
+
+- Configuration du produit :
+    - Supprimer tous les produit présents par défaut
+    - Cliquez ensuite sur *add item*
+
+![btcpay-server](assets/fr/29.webp)
+
+![btcpay-server](assets/fr/30.webp)
+
+- Configurez le produit : 
+    - Title : *smoke-machine*
+    - Price : *10 sats*
+    - Bitcoin switch GPIO : 21
+    - Bitcoin switch duration (en millisecondes) : 5000
+    - Cliquez sur *Close* puis sur *Save* pour enregistrer le nouveau produit
+
+![btcpay-server](assets/fr/31.webp)
+
 
