@@ -288,4 +288,44 @@ type=blink;server=https://api.blink.sv/graphql;api-key=blink_mZ5KxxxxxxxxNbmX;wa
 
 ![btcpay-server](/assets/31.webp)
 
+### Étape 3 : Firmware : Flashage de l'ESP32
+
+**1 - Accéder au site de flashage**
+- Rendez-vous sur : [https://bitcoinswitch.lnbits.com/](https://bitcoinswitch.lnbits.com/)
+
+![bitcoinswitch-lnbits](/assets/32.webp)
+
+**2 - Flasher le firmware BitcoinSwitch**
+- Branchez l'ESP32 à votre ordinateur avec votre câble USB/Micro-USB
+- Puis, cliquez sur *Connect to Device*
+- Une fenêtre s'ouvre, sélectionnez le port USB de votre ESP32, puis cliquez sur *Connect* 
+
+![bitcoinswitch-lnbits](/assets/33.webp)
+   
+- Une fois votre ESP32 connecté, nous allons y flasher le firmware BitcoinSwitch. Dans la section *T-Display*, cliquez sur *Upload Firmware* de la dernière version disponible (actuellement : *bitcoinSwitch T-Display v1.0.1*)
+
+![bitcoinswitch-lnbits](/assets/34.webp)
+
+- Patientez pendant l'upload, le processus est terminé lorsque les logs affichent *"Leaving..."*
+ ![bitcoinswitch-lnbits](/assets/35.webp)
+   
+- Débranchez l'ESP32
+
+**3 - Vérification de l’installation du firmware BitcoinSwitch**
+- Rechargez la page : [https://bitcoinswitch.lnbits.com/](https://bitcoinswitch.lnbits.com/)
+- Rebranchez l'ESP32 à votre ordinateur avec votre câble USB/Micro-USB
+- Puis, cliquez sur *Connect to device
+- Sélectionnez le Port USB de votre ESP32, puis cliquez sur *Connect* comme nous l’avons vu précédemment
+- Une fois connecté, appuyez sur le bouton **RESET** de l'ESP32
+- Vérifiez dans les logs que les dernières lignes affichent :
+
+``` 
+Welcome to BitcoinSwitch! (v1.0.1)
+Config file does not exist.
+Entering config mode. until we receive /config-done.
+```
+
+(C'est normal, ça signifie qu'il n'y a pas encore de configuration, mais que le firmware à bien été installé)
+
+![bitcoinswitch-lnbits](/assets/36.webp)
 
