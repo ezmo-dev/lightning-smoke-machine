@@ -414,3 +414,53 @@ Avant le test final, vérifiez :
 -  Logs ESP32 sans erreur
 
 ---
+
+
+## Test et Débogage
+
+### Test final complet
+
+1. Branchez la smoke machine (220V) et allumez-la
+2. Alimentez l'ESP32 (batterie ou USB)
+3. Ouvrez votre BTCPay PoS dans votre navigateur
+4. Scannez l'item "smoke-machine"
+5. Payez via un wallet Lightning (Blink ou autre wallet)
+6. Observez :
+	- Le relais clique (son audible et la LED du relais s’allume)
+	- La smoke machine s'active
+	- Fumée générée !
+
+### Problèmes féquents et solutions
+
+| **Problème**                        | **Cause probable**              | **Solution**                                                                                 |
+| ----------------------------------- | ------------------------------- | -------------------------------------------------------------------------------------------- |
+| ESP32 ne se connecte pas            | Driver USB manquant             | Installer [CH340 drivers](https://learn.sparkfun.com/tutorials/how-to-install-ch340-drivers) |
+| Relais ne clique pas                | Mauvais câblage GPIO            | Vérifier GPIO 21 → IN                                                                        |
+| Smoke machine ne réagit pas         | Télécommande mal câblée         | Vérifier NO/NC/COM                                                                           |
+| WebSocket timeout                   | URL incorrecte                  | Vérifier wss:// et /bitcoinswitch                                                            |
+| WiFi ne se connecte pas             | SSID/Password erroné            | Re-flasher la config WiFi                                                                    |
+| Paiement reçu mais rien ne se passe | ESP32 non connecté au WebSocket | Vérifier les logs RESET                                                                      |
+
+## Ressources
+
+### Liens utiles
+
+- BitcoinSwitch Firmware : [https://bitcoinswitch.lnbits.com/](https://bitcoinswitch.lnbits.com/)
+- BTCPay Server Docs : [https://docs.btcpayserver.org/](https://docs.btcpayserver.org/)
+- Blink API : [https://dev.blink.sv/](https://dev.blink.sv/)
+- ESP32 Pinout : [https://randomnerdtutorials.com/esp32-pinout-reference-gpios/](https://randomnerdtutorials.com/esp32-pinout-reference-gpios/)
+
+### Communauté & Support
+
+- **BTCPay Server** : [chat.btcpayserver.org](https://chat.btcpayserver.org/) - Mattermost officiel
+- **BTCPay Server Telegram** : [t.me/btcpayserver](https://t.me/btcpayserver)
+- **LNbits** : [t.me/lnbits](https://t.me/lnbits) - Telegram officiel, communauté active
+- **BitcoinSwitch (bugs firmware)** : [github.com/lnbits/bitcoinswitch/issues](https://github.com/lnbits/bitcoinswitch/issues)
+
+### Code source
+
+- Code source du firmware BitcoinSwitch : [https://github.com/lnbits/bitcoinswitch](https://github.com/lnbits/bitcoinswitch)
+
+---
+
+**⚡** Stack sats, make smoke, have fun, stay humble! **⚡**
