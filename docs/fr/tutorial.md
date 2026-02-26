@@ -204,7 +204,7 @@ Nous prendrons *Blink* comme exemple, mais *BTCPay Server* propose également *S
 - Rendez-vous sur https://www.blink.sv
 - Créez votre compte. Pour ça, vous pouvez vous référer au tutoriel : 
 
-[https://planb.academy/tutorials/wallet/mobile/blink-7ea5f5a4-e728-4ff9-b3f9-cf20aa6fc2bd)
+https://planb.academy/tutorials/wallet/mobile/blink-7ea5f5a4-e728-4ff9-b3f9-cf20aa6fc2bd
 
 **2 - Générer un clé API *Blink***
 - Accédez à l'interface API : **[https://www.blink.sv/en/api](https://www.blink.sv/en/api)** et connectez vous avec le même compte que lors de la création de votre wallet *Blink*
@@ -240,6 +240,7 @@ Nous prendrons *Blink* comme exemple, mais *BTCPay Server* propose également *S
 ```
 type=blink;server=https://api.blink.sv/graphql;api-key=blink_mZ5KxxxxxxxxNbmX;wallet-id=0a3fc465-082xxxxxxxxxx-2545595d856f
 ```
+
 
 
 **⚠️** **Important** : 
@@ -329,3 +330,87 @@ Entering config mode. until we receive /config-done.
 
 ![bitcoinswitch-lnbits](/assets/36.webp)
 
+**4 - Générer l'URL WebSocket LNURL**
+
+Format final attendu :
+
+```
+https://XXXXv/apps/46XXXXXXXXXXXXXXXXXXXXwFB/pos
+```
+
+Étapes de génération :
+- Ouvrez votre instanceBTCPay Server, puis allez dans le PoS que nous avons créé ultérieurement.
+- Cliquez ensuite sur “View”, pour ouvrir votre PoS dans le navigateur
+
+![btcpay-server-https](/assets/37.webp)
+
+- Copiez l'URL de la page, exemple : 	 
+
+![btcpay-server-https](/assets/38.webp)
+
+Décortiquons cette URL :
+
+```
+https://XXXXv/apps/46XXXXXXXXXXXXXXXXXXXXwFB/pos
+```
+
+- `XXXXv` → le domaine de votre instance BTCPay Server
+- `46XXXXXXXXXXXXXXXXXXXXwFB` → l'identifiant unique de votre PoS
+- `/pos` → indique qu'il s'agit d'un Point of Sale
+
+Transformez-la :
+- Remplacez `https://` par `wss://`
+- Ajoutez `/bitcoinswitch` à la fin
+
+Résultat :
+
+```
+wss://XXXXv/apps/46XXXXXXXXXXXXXXXXXXXXwFB/pos/bitcoinswitch
+```
+
+Gardez bien cette URL pour la suite de la configuration, c'est elle qui permettra à votre ESP32 de communiquer en temps réel avec BTCPay Server. Le protocole WebSocket (`wss://`) établit une connexion permanente entre les deux : dès qu'un paiement Lightning est confirmé sur votre PoS, BTCPay envoie instantanément l'information à l'ESP32, qui peut alors déclencher votre machine à fumée.
+
+**5 - Configurer le WiFi et le WebSocket**
+- Retournez sur la page : [https://bitcoinswitch.lnbits.com/](https://bitcoinswitch.lnbits.com/) avec votre ESP32 connecté
+- Allez dans la partie *Configure Device* → *Wifi Settings*
+
+Renseignez :
+- WiFi SSID : le nom de votre réseau WiFi
+- WiFi Password : le mot de passe de votre WiFi
+
+![bitcoinswitch-lnbits](/assets/39.webp)
+
+- Dans la section *LNbits Device URL*, collez l'URL WebSocket créé à l'étape précédente
+- Cliquez sur *Upload config*
+
+![bitcoinswitch-lnbits](/assets/40.webp)
+
+- Attendez la fin de l'upload, les logs doivent afficher les paramètres que vous venez d'entrer (SSID, mot de passe et URL WebSocket)
+
+![bitcoinswitch-lnbits](/assets/41.webp)
+
+- Attendez pendant que l'ESP32 établit la connexion WebSocket. Vous devriez voir apparaître : 
+
+```
+WiFi connection established!
+
+[WebSocket] Connected to url: ...
+```
+
+![bitcoinswitch-lnbits](/assets/42.webp)
+
+- Vous pouvez maintenant débrancher l'ESP32
+
+---
+## Checkpoint Logiciel
+
+Avant le test final, vérifiez :
+
+-  Blink connecté à BTCPay
+-  PoS créé avec au moins 1 item
+-  ESP32 flashé avec BitcoinSwitch
+-  WiFi configuré sur l'ESP32
+-  WebSocket URL correcte
+-  Logs ESP32 sans erreur
+
+---
