@@ -2,6 +2,13 @@
 
 → Trigger a smoke machine with a Bitcoin Lightning payment built with an ESP32, BTCPay Server + Blink, and BitcoinSwitch.
 
+![License: MIT](https://img.shields.io/badge/License-MIT-orange.svg)
+![Language: French](https://img.shields.io/badge/Language-French-blue.svg)
+![Translation: English](https://img.shields.io/badge/Translation-coming%20soon-lightgrey.svg)
+![Hardware: ESP32](https://img.shields.io/badge/Hardware-ESP32-green.svg)
+![Network: Lightning](https://img.shields.io/badge/Network-Lightning-yellow.svg)
+![Platform: BTCPay](https://img.shields.io/badge/Platform-BTCPay%20Server-green.svg)
+
 ![cover](./assets/cover.webp)
 *⚡ Real test on the main stage at Plan ₿ Forum, San Salvador 2025*
 
