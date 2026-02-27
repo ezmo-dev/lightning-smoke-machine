@@ -38,28 +38,28 @@ Transforme une machine à fumée classique en dispositif payable en Bitcoin via 
 - 1 Microcontrôleur - ESP32-WROOM-32 
 *L'ESP32-WROOM-32 est un microcontrôleur WiFi/Bluetooth compact et peu coûteux qui permet de connecter des appareils électroniques à Internet et de les contrôler à distance.*
 
-![ESP32](/assets/1.webp)
+<img src="/assets/1.webp" width="400">
 
 - 1 Module relais - 5V avec optocoupleur
 *Un relais, c'est comme un interrupteur que l'ESP32 peut actionner pour allumer ou éteindre la machine à fumée.*
 
-![relay](/assets/2.webp)
+<img src="/assets/2.webp" width="400">
 
 - ~10 Câbles Dupont - Mâle/Mâle et Mâle/Female
 
-![dupont-cables](/assets/3.webp)
+<img src="/assets/3.webp" width="400">
 
 - 1 Alimentation pour l'ESP32 - 5V USB ou batterie Li-Po
 
-![battery](/assets/4.webp)
+<img src="/assets/4.webp" width="400">
 
 - 1 Cable micro-USB - connexion entre l'ESP32 et son alimentation
 
-![micro-usb-cables](/assets/5.webp)
+<img src="/assets/5.webp" width="400">
 
 - 1 Machine à fumée 220V avec télécommande à pile 12V
 
-![remote-and-smoke-machine](/assets/6.webp)
+<img src="/assets/6.webp" width="400">
 
 - 1 bouteille de liquide compatible avec votre machine à fumée
 
@@ -109,13 +109,13 @@ Objectif : Connecter le relais au bouton ON/OFF de la télécommande
 	- Localisez les bornes + et - du bouton 
 	- Testez la continuité au multimètre (optionnel)
 
-![smoke-machine-remote](/assets/8.webp)
+<img src="/assets/8.webp" width="600">
 
 3. Câblage du bouton (soudure ou connecteurs)
     - Souder un câble noir sur la borne - du bouton
     - Souder un câble rouge sur la borne + commune
 
-![smoke-machine-remote](/assets/9.webp)
+<img src="/assets/9.webp" width="400">
 
 ### Étape 2 : Connexion au module relais
 
