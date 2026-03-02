@@ -3,7 +3,7 @@ name: Lightning Smoke Machine
 description: Trigger a smoke machine with a Lightning payment via ESP32.
 ---
 
-![cover-lightning-smoke-machine](assets/cover.webp)
+![cover-lightning-smoke-machine](/assets/cover.webp)
 *⚡ Real test on the main stage at Plan ₿ Forum, San Salvador 2025*
 
 ## Introduction
