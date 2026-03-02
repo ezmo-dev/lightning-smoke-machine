@@ -20,8 +20,8 @@
 
 | Language | Link |
 |---|---|
-| 🇫🇷 Français | [docs/tutorial.md](./docs/fr/tutorial.md) |
-| 🇬🇧 English | *coming soon* |
+| 🇫🇷 Français | [docs/fr/tutorial.md](./docs/fr/tutorial.md) |
+| 🇺🇸 English | [docs/en/tutorial.md](./docs/en/tutorial.md) |
 
 ## How it works
 
