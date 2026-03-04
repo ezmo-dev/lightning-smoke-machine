@@ -45,3 +45,53 @@ Transforms a classic smoke machine into a device payable in Bitcoin via Lightnin
 - Admin access to BTCPay Server
 - WiFi connection for ESP32
 
+## Materials required
+
+### Hardware - Electronic components
+
+- 1 Microcontroller - ESP32-WROOM-32
+
+*The ESP32-WROOM-32 is a compact, low-cost WiFi/Bluetooth microcontroller for connecting electronic devices to the Internet and controlling them remotely.*
+
+<img src="/assets/1.webp" width="400">
+
+- 1 Relay module - 5V with optocoupler
+
+*A relay is like a switch that the ESP32 can operate to turn the smoke machine on or off.*
+
+<img src="/assets/2.webp" width="400">
+
+- ~10 Dupont cables - Male/Male and Male/Female
+
+<img src="/assets/3.webp" width="400">
+
+- 1 Power supply for ESP32 - 5V USB or Li-Po battery
+
+<img src="/assets/4.webp" width="400">
+
+- 1 Micro-USB cable - connection between ESP32 and power supply
+
+<img src="/assets/5.webp" width="400">
+
+- 1 220V fog machine with 12V battery remote control
+
+<img src="/assets/6.webp" width="400">
+
+- 1 bottle of liquid compatible with your smoke machine
+
+### Hardware - Tools
+
+- Soldering iron + tin (if soldering)
+- Screwdriver
+- Multimeter (recommended)
+
+### Software
+
+- BitcoinSwitch Firmware: **[https://bitcoinswitch.lnbits.com/](https://bitcoinswitch.lnbits.com/)**
+- WebSerial-compatible web browser (Chrome/Edge/Brave)
+- BTCPay Server configured. For more information on creating a BTCPay Server instance, visit: https://planb.academy/fr/tutorials/business/point-of-sale/btcpay-server-928eb01e-824b-4b57-a3e8-8727633beddc
+
+## System architecture
+
+![architecture-lightning-smoke-machine](/assets/7.webp)
+
