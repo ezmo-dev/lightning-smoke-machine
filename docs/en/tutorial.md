@@ -95,3 +95,17 @@ Transforms a classic smoke machine into a device payable in Bitcoin via Lightnin
 
 ![architecture-lightning-smoke-machine](/assets/7.webp)
 
+---
+
+**⚠️** **SAFETY WARNING - READ BEFORE CONTINUING** **⚠️**
+
+This project involves a fog machine connected to a **220V mains supply**. Improper operation can result in **fatal electrocution** or **fire**.
+
+**Non-negotiable rules:**
+
+1. **ALWAYS disconnect the smoke machine from the mains** before opening the remote control or handling the wiring
+2. **Remove the 12V battery from the remote control** before any handling (risk of short-circuit and damage to components)
+3. **Check that all your connections are isolated** before reconnecting anything
+4. **Never reconnect the 220V** until the remote control box has been closed and secured
+
+If you are not comfortable with this kind of handling, ask someone with experience to help you.
