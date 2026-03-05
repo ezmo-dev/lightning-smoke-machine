@@ -109,3 +109,79 @@ This project involves a fog machine connected to a **220V mains supply**. Improp
 4. **Never reconnect the 220V** until the remote control box has been closed and secured
 
 If you are not comfortable with this kind of handling, ask someone with experience to help you.
+
+---
+
+## PART 1: Hardware assembly
+
+### Step 1: Preparing the remote control
+
+Objective: Connect the relay to the ON/OFF button on the remote control
+
+1. Open the remote control
+    - Identify the ON/OFF button
+    - Unscrew the case to open the remote control
+
+2. Locate the connections
+    - Locate the + and - terminals of the button
+    - Test continuity with a multimeter (optional)
+
+<img src="/assets/8.webp" width="600">
+
+3. Button wiring (solder or connectors)
+    - Solder a black cable to the - terminal of the button
+    - Solder a red cable to the common + terminal
+
+<img src="/assets/9.webp" width="400">
+
+### Step 2: Connecting to the relay module
+
+**Relay terminology**
+
+| **Terminal**         | **Description**            | **Function**                        |
+| -------------------- | -------------------------- | ----------------------------------- |
+| NO (Normally Open)   | Circuit open by default    | Closes when the relay is activated  |
+| NC (Normally Closed) | Circuit closed by default  | Opens when the relay is activated   |
+| COM (Common)         | Central terminal           | Switches between NO and NC          |
+
+**Wiring from remote control to relay module:**
+
+- Black wire from ON/OFF button **→** NO (Normally Open)
+- Red wire (common) **→** COM (Common)
+
+**Logic:**
+
+When the ESP32 activates the relay, it connects COM and NO, which is exactly the same as pressing the remote control button.
+
+When the ESP32 cuts the relay, COM and NO separate, which is equivalent to releasing the button.
+
+![remote-relay](/assets/10.webp)
+
+### Step 3: Connecting the ESP32 to the relay module
+
+**Wiring diagram:**
+
+| **ESP32** | **→** | **Relay Module** |
+| --------- | ----- | ---------------- |
+| V5 (5V)   | **→** | VCC              |
+| GND       | **→** | GND              |
+| GPIO 21   | **→** | IN (Input)       |
+
+**Verification:**
+
+- VCC and GND well connected (polarity respected)
+- GPIO 21 used for control signal
+- No visible short circuit
+
+![relay-esp32](/assets/11.webp)
+
+**Hardware Checkpoint**
+
+Before moving on to the software, check:
+
+- Remote control correctly wired
+- Relay module connected to ESP32
+- No bare wires touching other components
+- 220V always disconnected
+
+![relay-esp32](/assets/12.webp)
