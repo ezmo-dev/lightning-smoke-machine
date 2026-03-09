@@ -309,3 +309,132 @@ type=blink;server=https://api.blink.sv/graphql;api-key=blink_mZ5KxxxxxxxxNbmX;wa
     - Click *Close* then *Save*
 
 ![btcpay-server](/assets/31.webp)
+
+
+### Step 3: Firmware — Flashing the ESP32
+
+**1 - Go to the flash site**
+
+- Go to: [https://bitcoinswitch.lnbits.com/](https://bitcoinswitch.lnbits.com/)
+
+![bitcoinswitch-lnbits](/assets/32.webp)
+
+**2 - Flash the BitcoinSwitch firmware**
+
+- Connect the ESP32 to your computer with your USB/Micro-USB cable
+- Click on *Connect to Device*
+- A window opens, select the USB port of your ESP32, then click *Connect*
+
+![bitcoinswitch-lnbits](/assets/33.webp)
+
+- Once your ESP32 is connected, flash the BitcoinSwitch firmware. In the *T-Display* section, click *Upload Firmware* for the latest version available (currently: *bitcoinSwitch T-Display v1.0.1*)
+
+![bitcoinswitch-lnbits](/assets/34.webp)
+
+- Wait for the upload to complete — the process is done when the logs show *"Leaving..."*
+
+![bitcoinswitch-lnbits](/assets/35.webp)
+
+- Unplug the ESP32
+
+**3 - Verify the BitcoinSwitch firmware installation**
+
+- Reload the page: [https://bitcoinswitch.lnbits.com/](https://bitcoinswitch.lnbits.com/)
+- Reconnect the ESP32 to your computer
+- Click *Connect to device*, select the USB port, then *Connect*
+- Once connected, press the **RESET** button on the ESP32
+- Check in the logs that the last lines show:
+```
+Welcome to BitcoinSwitch! (v1.0.1)
+Config file does not exist.
+Entering config mode. until we receive /config-done.
+```
+
+*(This is normal — it means there is no config yet, but the firmware has been installed)*
+
+![bitcoinswitch-lnbits](/assets/36.webp)
+
+**4 - Generate the WebSocket URL**
+
+Expected final format:
+```
+wss://XXXXv/apps/46XXXXXXXXXXXXXXXXXXXXwFB/pos/bitcoinswitch
+```
+
+Generation steps:
+
+- Open your BTCPay Server instance and go to the PoS created earlier
+- Click *"View"* to open your PoS in the browser
+
+![btcpay-server-https](/assets/37.webp)
+
+- Copy the URL of the page:
+
+![btcpay-server-https](/assets/38.webp)
+
+Breaking down this URL:
+```
+https://XXXXv/apps/46XXXXXXXXXXXXXXXXXXXXwFB/pos
+```
+
+- `XXXXv` → the domain of your BTCPay Server instance
+- `46XXXXXXXXXXXXXXXXXXXXwFB` → your PoS unique identifier
+- `/pos` → indicates a Point of Sale
+
+Transform it:
+
+- Replace `https://` with `wss://`
+- Add `/bitcoinswitch` at the end
+
+Result:
+```
+wss://XXXXv/apps/46XXXXXXXXXXXXXXXXXXXXwFB/pos/bitcoinswitch
+```
+
+Keep this URL for the next configuration step — it allows your ESP32 to communicate in real time with BTCPay Server.
+
+**5 - Configure WiFi and WebSocket**
+
+- Return to: [https://bitcoinswitch.lnbits.com/](https://bitcoinswitch.lnbits.com/) with your ESP32 connected
+- Go to *Configure Device* → *Wifi Settings*
+
+Fill in:
+
+- WiFi SSID: the name of your WiFi network
+- WiFi Password: your WiFi password
+
+![bitcoinswitch-lnbits](/assets/39.webp)
+
+- In the *LNbits Device URL* section, paste the WebSocket URL created in the previous step
+- Click *Upload config*
+
+![bitcoinswitch-lnbits](/assets/40.webp)
+
+- Wait for the upload to complete — the logs should display the parameters you just entered
+
+![bitcoinswitch-lnbits](/assets/41.webp)
+
+- Wait while the ESP32 establishes the WebSocket connection. You should see:
+```
+WiFi connection established!
+[WebSocket] Connected to url: ...
+```
+
+![bitcoinswitch-lnbits](/assets/42.webp)
+
+- You can now disconnect the ESP32
+
+---
+
+## Software Checkpoint
+
+Before the final test, check:
+
+- Blink connected to BTCPay
+- PoS created with at least 1 product
+- ESP32 flashed with BitcoinSwitch
+- WiFi configured on ESP32
+- WebSocket URL correct
+- ESP32 logs error-free
+
+---
