@@ -438,3 +438,54 @@ Before the final test, check:
 - ESP32 logs error-free
 
 ---
+
+## Testing and troubleshooting
+
+### Complete final test
+
+1. Plug in the smoke machine (220V) and switch it on
+2. Power the ESP32 (battery or USB)
+3. Open your BTCPay PoS in the browser
+4. Select the *smoke-machine* product
+5. Pay with a Lightning wallet (Blink or any other)
+6. Observe:
+    - Relay clicks (audible sound and relay LED lights up)
+    - The smoke machine activates
+    - Smoke generated!
+
+### Problems and solutions
+
+| **Problem** | **Probable cause** | **Solution** |
+| --- | --- | --- |
+| ESP32 does not connect | Missing USB driver | Install [CH340 drivers](https://learn.sparkfun.com/tutorials/how-to-install-ch340-drivers) |
+| Relay does not click | Wrong GPIO wiring | Check GPIO 21 → IN |
+| Smoke machine does not respond | Remote control improperly wired | Check NO/NC/COM |
+| WebSocket timeout | Incorrect URL | Check wss:// and /bitcoinswitch |
+| WiFi does not connect | SSID/Password incorrect | Re-flash WiFi config |
+| Payment received but nothing happens | ESP32 not connected to WebSocket | Check RESET logs |
+
+---
+
+## Resources
+
+### Useful links
+
+- BitcoinSwitch Firmware: [https://bitcoinswitch.lnbits.com/](https://bitcoinswitch.lnbits.com/)
+- BTCPay Server Docs: [https://docs.btcpayserver.org/](https://docs.btcpayserver.org/)
+- Blink API: [https://dev.blink.sv/](https://dev.blink.sv/)
+- ESP32 Pinout: [https://randomnerdtutorials.com/esp32-pinout-reference-gpios/](https://randomnerdtutorials.com/esp32-pinout-reference-gpios/)
+
+### Community & Support
+
+- BTCPay Server: [chat.btcpayserver.org](https://chat.btcpayserver.org/)
+- BTCPay Server Telegram: [t.me/btcpayserver](https://t.me/btcpayserver)
+- LNbits: [t.me/lnbits](https://t.me/lnbits)
+- BitcoinSwitch (firmware bugs): [github.com/lnbits/bitcoinswitch/issues](https://github.com/lnbits/bitcoinswitch/issues)
+
+### Source code
+
+- BitcoinSwitch firmware: [https://github.com/lnbits/bitcoinswitch](https://github.com/lnbits/bitcoinswitch)
+
+---
+
+**⚡ Stack sats, make smoke, have fun, stay humble! ⚡**
