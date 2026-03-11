@@ -57,7 +57,7 @@
 
 This project involves a **220V mains supply** and a **12V battery remote control**.
 Always disconnect the smoke machine from the mains **and** remove the battery from the remote control before opening it or handling the wiring.
-Read the full safety section in the [tutorial](./docs/tutorial.md) before starting.
+Read the full safety section in the [tutorial](./docs/en/tutorial.md) before starting.
 
 ## License
 
