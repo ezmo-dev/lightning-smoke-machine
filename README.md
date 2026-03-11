@@ -21,6 +21,7 @@
 |---|---|
 | 🇫🇷 Français | [docs/fr/tutorial.md](./docs/fr/tutorial.md) |
 | 🇺🇸 English | [docs/en/tutorial.md](./docs/en/tutorial.md) |
+| 🌍 28 languages | [Plan B Academy](https://planb.academy/fr/tutorials/business/others/lightning-smoke-machine-1a14c9e2-764f-4cbc-ab57-cf6c217a317d) |
 
 ## How it works
 
