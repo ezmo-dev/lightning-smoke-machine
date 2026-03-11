@@ -453,7 +453,7 @@ Before the final test, check:
     - The smoke machine activates
     - Smoke generated!
 
-### Problems and solutions
+### Common problems and solutions
 
 | **Problem** | **Probable cause** | **Solution** |
 | --- | --- | --- |
