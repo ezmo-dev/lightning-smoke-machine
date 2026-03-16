@@ -1,0 +1,166 @@
+/* lightning-smoke-machine app-walkthrough design-system*/
+/* ------------------- */
+/* Google fonts */
+
+@import url('https://fonts.googleapis.com/css2?family=Quicksand:wght@500;600;700&display=swap');
+
+
+/* ------------------- */
+/* Design tokens (CSS Variables) */
+
+:root {
+  /* Background */
+  --color-bg-main: #FFFFFF;
+  --color-bg-card: #F6EFE7;
+  --color-bg-dark: #52514E;
+
+  /* Text */
+  --color-text-primary: #191817;
+  --color-text-secondary: #62605C;
+  --color-text-tertiary: #87837F;
+
+  /* Action */
+  --color-action: #F9A836;
+  --color-action-text: #FFFFFF;
+
+  /* Level accent colors (card backgrounds per level) */
+  --color-level-00: #FFFFFF;
+  --color-level-01: #BCEEB6;
+  --color-level-02: #ADE4FF;
+  --color-level-03: #E0BFDE;
+  --color-level-04: #FFCC77;
+  --color-safety: #FFFFFF; /* (I don't know yet) */
+
+  /* Feedback */
+  --color-success: #49C275;
+  --color-warning: #FFC300;
+  --color-error: #FC5057;
+
+  /* Spacing scale */
+  --space-xs: 8px;
+  --space-sm: 12px;
+  --space-md: 20px;
+  --space-lg: 32px;
+  --space-xl: 48px;
+
+  /* Radius */
+  --radius-sm: 8px;
+  --radius-md: 12px;
+  --radius-lg: 20px;
+  --radius-pill: 100px;
+
+  /* Shadow */
+  --shadow-card: 0 4px 16px rgba(0, 0, 0, 0.08);
+}
+
+
+/* ------------------- */
+/* Reset */
+
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+button {
+  font-family: inherit;
+  cursor: pointer;
+  border: none;
+  background: none;
+}
+
+img {
+  display: block;
+  max-width: 100%;
+}
+
+/* ------------------- */
+/* Base typography */
+
+body {
+  font-family: 'Quicksand', sans-serif;
+  font-weight: 500;
+  background: var(--color-bg-main);
+  color: var(--color-text-primary);
+  min-height: 100vh;
+  -webkit-font-smoothing: antialiased;
+}
+
+
+/* ------------------- */
+/* App container (mobile-first, centered on desktop for now) */
+
+#app {
+  position: relative;
+  max-width: 430px;
+  min-height: 100vh;
+  margin: 0 auto;
+  background: var(--color-bg-main);
+  overflow: hidden;
+}
+
+
+/* ------------------- */
+/* Screen system (show/hide) */
+
+.screen {
+  display: none;
+  flex-direction: column;
+  min-height: 100vh;
+  padding: var(--space-lg) var(--space-md);
+}
+
+.screen.active {
+  display: flex;
+}
+
+
+/* ------------------- */
+/* SCREEN 1 - Language Select */
+
+#screen-language {
+  align-items: center;
+  justify-content: space-between;
+}
+
+.lang-logo-area {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-md);
+}
+
+.logo-placeholder {
+  width: 160px;
+  height: 160px;
+  background: var(--color-bg-card);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-card);
+}
+
+.lang-buttons {
+  width: 100%;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--space-sm);
+  padding-bottom: var(--space-md);
+}
+
+.btn-lang {
+  min-height: 56px;
+  background: var(--color-action);
+  color: var(--color-action-text);
+  font-family: 'Quicksand', sans-serif;
+  font-weight: 700;
+  font-size: 1.125rem;
+  border-radius: var(--radius-md);
+  transition: opacity 0.15s ease, transform 0.1s ease;
+}
+
+.btn-lang:active {
+  opacity: 0.85;
+  transform: scale(0.97);
+}
