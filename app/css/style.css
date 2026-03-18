@@ -125,7 +125,6 @@ body {
   grid-template-rows: auto 1fr auto;
   min-height: 100vh;
   padding: 0 0 40px;
-  overflow: hidden;
 }
 
 /* Row 1: background SVG + logo stacked */
@@ -133,7 +132,6 @@ body {
   position: relative;
   line-height: 0;
   height: 65vh;
-  overflow: hidden;
 }
 
 .lang-bg {
@@ -149,11 +147,11 @@ body {
 
 .lang-logo {
   position: absolute;
-  top: 35%;
-  left: 53%;
-  transform: translate(-50%, -50%);
+  top: 38%;
+  left: 54%;
+  transform: translate(-50%, -50%) scale(1.2);
   width: 100%;
-  filter: drop-shadow(2px 5px 7px rgba(0, 0, 0, 0.18));
+  filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));
 }
 
 /* Row 2: text block, pulled up over the background SVG */
