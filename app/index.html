@@ -63,7 +63,43 @@
 
     <!-- Screen 2b: Welcome Back (returning user) -->
     <div id="screen-welcome-back" class="screen">
-      <h2>Welcome back</h2>
+
+      <!-- Top bar: profile + help icons -->
+      <div class="wb-topbar">
+        <button id="btn-wb-profile" class="wb-icon-btn" aria-label="Profile">
+          <svg width="28" height="28" viewBox="0 0 28 28" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <circle cx="14" cy="9" r="5" stroke="#191817" stroke-width="2"/>
+            <path d="M4 24c0-5.523 4.477-10 10-10s10 4.477 10 10" stroke="#191817" stroke-width="2" stroke-linecap="round"/>
+          </svg>
+        </button>
+        <button id="btn-wb-help" class="wb-icon-btn" aria-label="Help">
+          <svg width="28" height="28" viewBox="0 0 28 28" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <circle cx="14" cy="14" r="12" stroke="#191817" stroke-width="2"/>
+            <text x="14" y="19" text-anchor="middle" font-family="Quicksand, sans-serif" font-size="14" font-weight="700" fill="#191817">?</text>
+          </svg>
+        </button>
+      </div>
+
+      <!-- Hero: halo background + logo + caterpillar layered -->
+      <div class="wb-hero">
+        <img src="img/screen-02b/background-screen-02b.svg" alt="" class="wb-bg" />
+        <img src="img/screen-02b/logo.svg" alt="Smoke Machine" class="wb-logo" />
+        <img id="wb-mascot" src="img/mascot/level-00.png" alt="" class="wb-mascot" />
+      </div>
+
+      <!-- Bottom zone: welcome text, progress, buttons -->
+      <div class="wb-bottom">
+        <p class="wb-greeting">Welcome back <span id="wb-pseudonym"></span>!</p>
+        <div class="wb-progress-bar">
+          <div id="wb-progress-fill" class="wb-progress-fill"></div>
+        </div>
+        <p id="wb-progress-text" class="wb-progress-text">Step 0 of 14 completed</p>
+        <div class="wb-buttons">
+          <button id="btn-continue" class="btn-lang btn-lang--primary">CONTINUE</button>
+          <button id="btn-startover" class="btn-lang btn-lang--outline">START OVER</button>
+        </div>
+      </div>
+
     </div>
 
     <!-- Screen 3: Tutorial Map -->
