@@ -86,6 +86,29 @@ document.getElementById('btn-en').addEventListener('click', function () {
 
 
 /* ------------------- */
+/* Screen 2a — Welcome (first visit) */
+
+document.getElementById('btn-letsgo').addEventListener('click', function () {
+  const input = document.getElementById('input-pseudonym');
+  const name = input.value.trim();
+
+  if (!name) {
+    // shake the input to signal it is required
+    input.classList.remove('shake');
+    void input.offsetWidth; // force reflow to restart animation
+    input.classList.add('shake');
+    input.addEventListener('animationend', function () {
+      input.classList.remove('shake');
+    }, { once: true });
+    return;
+  }
+
+  Storage.setPseudonym(name);
+  showScreen('screen-map');
+});
+
+
+/* ------------------- */
 /* Boot */
 
 document.addEventListener('DOMContentLoaded', init);

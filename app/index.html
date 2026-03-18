@@ -37,7 +37,28 @@
 
     <!-- Screen 2a: Welcome (first visit) -->
     <div id="screen-welcome" class="screen">
-      <h2>Welcome (first visit)</h2>
+
+      <!-- Row 1: halo + logo + caterpillar layered -->
+      <div class="welcome-hero">
+        <img src="img/screen-02a/background-screen-02a.svg" alt="" class="welcome-bg" />
+        <img src="img/screen-02a/logo.svg" alt="Smoke Machine" class="welcome-logo" />
+        <img src="img/mascot/level-00.png" alt="" class="welcome-mascot" />
+      </div>
+
+      <!-- Row 2: form inputs -->
+      <div class="welcome-form">
+        <input
+          id="input-pseudonym"
+          type="text"
+          class="pseudonym-input"
+          placeholder="Your pseudonym.."
+          maxlength="20"
+          autocomplete="off"
+        />
+        <button id="btn-letsgo" class="btn-letsgo">LET'S GO!</button>
+        <p class="welcome-info">*Use the same browser to keep your progress</p>
+      </div>
+
     </div>
 
     <!-- Screen 2b: Welcome Back (returning user) -->
