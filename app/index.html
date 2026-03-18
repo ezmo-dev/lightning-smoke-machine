@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
   <title>Lightning Smoke Machine</title>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -13,21 +13,24 @@
   <div id="app">
 
     <!-- Screen 1: Language Select -->
-    <div id="screen-language" class="screen">
+    <div id="screen-language" class="screen active">
 
-      <!-- Top zone: blob card with graffiti logo -->
-      <div class="lang-top">
-        <img src="img/logo.svg" alt="Smoke Machine" class="lang-logo" />
+      <!-- Row 1: background shape + logo layered on top -->
+      <div class="lang-hero">
+        <img src="img/screen-01/background-screen-01.svg" alt="" class="lang-bg" />
+        <img src="img/screen-01/logo.svg" alt="Smoke Machine" class="lang-logo" />
       </div>
 
-      <!-- Bottom zone: tagline, subtitle, language buttons -->
-      <div class="lang-bottom">
+      <!-- Row 2: text, pulled up to straddle the blob edge -->
+      <div class="lang-text">
         <p class="lang-tagline">YOUR FIRST LIGHTNING-POWERED DEVICE STARTS HERE!</p>
         <p class="lang-subtitle">Choose your language</p>
-        <div class="lang-buttons">
-          <button id="btn-fr" class="btn-lang btn-lang--primary">FR</button>
-          <button id="btn-en" class="btn-lang btn-lang--outline">EN</button>
-        </div>
+      </div>
+
+      <!-- Row 3: buttons -->
+      <div class="lang-buttons">
+        <button id="btn-fr" class="btn-lang btn-lang--primary">FR</button>
+        <button id="btn-en" class="btn-lang btn-lang--outline">EN</button>
       </div>
 
     </div>
