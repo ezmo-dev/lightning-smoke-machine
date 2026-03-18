@@ -234,13 +234,16 @@ body {
   position: relative;
   height: 58vh;
   line-height: 0;
+  margin-bottom: -1px;
 }
 
 .welcome-bg {
+  --bg-scale: 1.1; /* increase to enlarge without moving */
   display: block;
   width: 100%;
-  height: 100%;
+  height: 95%;
   object-fit: fill;
+  transform: scale(var(--bg-scale));
 }
 
 .welcome-logo {
@@ -249,14 +252,14 @@ body {
   left: 48%;
   transform: translate(-50%, -50%) rotate(-15deg);
   width: 80%;
-  filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));
+  filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.18));
   z-index: 1;
 }
 
 /* Caterpillar sits in front of logo, overflows into form zone */
 .welcome-mascot {
   position: absolute;
-  top: 30%;
+  top: 32.5%;
   bottom: -90px;
   left: 61%;
   transform: translateX(-50%);
@@ -278,7 +281,7 @@ body {
 
 .pseudonym-input {
   position: absolute;
-  top: -5px; /* change top to move up or down */
+  top: 148px; /* change top to move up or down */
   left: var(--space-md);
   right: var(--space-md);
   width: auto;
@@ -303,7 +306,7 @@ body {
 .btn-letsgo {
   width: 100%;
   min-height: 56px;
-  margin-top: 40px; /* change to move button + info text up or down */
+  margin-top: 120px; /* change to move button + info text up or down */
   font-family: 'Quicksand', sans-serif;
   font-weight: 700;
   font-size: 1.125rem;
@@ -312,6 +315,20 @@ body {
   border-radius: var(--radius-pill);
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
   transition: opacity 0.15s ease, transform 0.1s ease;
+}
+
+@media (max-height: 700px) {
+  .welcome-hero {
+    height: 45vh;
+  }
+  .welcome-mascot {
+    width: 200px;
+    height: 200px;
+  }
+  .welcome-form {
+    padding-top: 70px;
+    gap: 12px;
+  }
 }
 
 .btn-letsgo:active {
