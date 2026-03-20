@@ -104,7 +104,32 @@
 
     <!-- Screen 3: Tutorial Map -->
     <div id="screen-map" class="screen">
-      <h2>Tutorial Map</h2>
+
+      <!-- Top bar: profile | overall progress bar | help -->
+      <div class="map-topbar">
+        <button id="btn-map-profile" class="wb-icon-btn" aria-label="Profile">
+          <svg width="28" height="28" viewBox="0 0 28 28" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <circle cx="14" cy="9" r="5" stroke="#191817" stroke-width="2"/>
+            <path d="M4 24c0-5.523 4.477-10 10-10s10 4.477 10 10" stroke="#191817" stroke-width="2" stroke-linecap="round"/>
+          </svg>
+        </button>
+        <div class="map-overall-bar">
+          <div id="map-overall-fill" class="map-overall-fill"></div>
+        </div>
+        <button id="btn-map-help" class="wb-icon-btn" aria-label="Help">
+          <svg width="28" height="28" viewBox="0 0 28 28" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <circle cx="14" cy="14" r="12" stroke="#191817" stroke-width="2"/>
+            <text x="14" y="19" text-anchor="middle" font-family="Quicksand, sans-serif" font-size="14" font-weight="700" fill="#191817">?</text>
+          </svg>
+        </button>
+      </div>
+
+      <!-- Title -->
+      <h2 class="map-title">Tutorial map</h2>
+
+      <!-- Cards injected by JS -->
+      <div id="map-cards" class="map-cards"></div>
+
     </div>
 
     <!-- Screen 4: Step Content -->

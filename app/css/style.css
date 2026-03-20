@@ -482,3 +482,218 @@ body {
   .wb-hero { height: 40vh; }
   .wb-mascot { width: 200px; height: 200px; }
 }
+
+
+/* ------------------- */
+/* Screen 3 - Tutorial Map */
+
+#screen-map.active {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  max-height: 100vh;
+  overflow: hidden;
+  padding: 0;
+}
+
+/* Top bar */
+.map-topbar {
+  display: flex;
+  align-items: center;
+  gap: var(--space-sm);
+  padding: var(--space-md);
+  flex-shrink: 0;
+}
+
+.map-overall-bar {
+  flex: 1;
+  height: 10px;
+  background: var(--color-bg-card);
+  border-radius: 100px;
+  overflow: hidden;
+}
+
+.map-overall-fill {
+  height: 100%;
+  width: 0%;
+  background: var(--color-action);
+  border-radius: 100px;
+  transition: width 0.4s ease;
+}
+
+/* Title */
+.map-title {
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: var(--color-text-primary);
+  padding: 0 var(--space-md) var(--space-xs);
+  margin: 0;
+  flex-shrink: 0;
+}
+
+/* Cards container: fills remaining height, no scroll */
+.map-cards {
+  --map-top-gap: 10px;      /* space between title and first card */
+  --map-cards-gap: 20px;    /* space between cards (first card stays fixed, others move down) */
+  --map-mascot-layout: 85px; /* space the mascot reserves in the card layout (controls card height) */
+  --map-mascot-size: 120px;  /* visual size of the mascot image (can be bigger than layout, overflows) */
+  --map-card-inner-gap: 6px; /* gap between name, steps text, and progress bar inside each card */
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: var(--map-cards-gap);
+  padding: var(--map-top-gap) 24px max(16px, env(safe-area-inset-bottom));
+  overflow: visible;
+  min-height: 0;
+}
+
+/* Base card */
+.map-card {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 12px;
+  border-radius: 16px;
+  padding: 10px 14px;
+  cursor: pointer;
+  min-height: 0;
+}
+
+/* Completed: white bg, amber border, no shadow */
+.map-card--completed {
+  background: white;
+  border: 2px solid var(--color-action);
+}
+
+/* Current: white bg, amber border, pulsing glow */
+.map-card--current {
+  background: white;
+  border: 2px solid var(--color-action);
+  animation: pulseGlow 2s ease-in-out infinite;
+}
+
+/* Locked: gray bg */
+.map-card--locked {
+  background: #F5F5F5;
+  border: 2px solid #ebebeb;
+  cursor: default;
+}
+
+/* Glow animation for current card */
+@keyframes pulseGlow {
+  0%   { box-shadow: 0 0 8px rgba(249, 168, 54, 0.3); }
+  50%  { box-shadow: 0 0 22px rgba(249, 168, 54, 0.85); }
+  100% { box-shadow: 0 0 8px rgba(249, 168, 54, 0.3); }
+}
+
+/* Locked card shake (reuses same keyframes as screen 2a input) */
+.map-card--locked.shake {
+  animation: shake 0.35s ease;
+}
+
+/* Mascot image: scale() enlarges visually without affecting layout */
+.map-card-mascot {
+  width: var(--map-mascot-layout);
+  height: var(--map-mascot-layout);
+  flex-shrink: 0;
+  overflow: visible;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.map-card-mascot img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  transform: scale(calc(var(--map-mascot-size) / var(--map-mascot-layout)));
+  transform-origin: center center;
+}
+
+/* Locked placeholder: gray circle with ? */
+.map-card-locked-icon {
+  width: var(--map-mascot-layout);
+  height: var(--map-mascot-layout);
+  border-radius: 50%;
+  background: #DEDEDE;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.4rem;
+  font-weight: 700;
+  color: #ABABAB;
+  flex-shrink: 0;
+}
+
+/* Card info column */
+.map-card-info {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: var(--map-card-inner-gap);
+  min-width: 0;
+}
+
+.map-card-name {
+  font-size: 0.95rem;
+  font-weight: 700;
+  color: var(--color-text-primary);
+}
+
+.map-card-steps {
+  font-size: 0.72rem;
+  font-weight: 500;
+  color: var(--color-text-tertiary);
+}
+
+/* Progress bar + fraction on same row */
+.map-card-progress {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.map-card-bar {
+  flex: 1;
+  height: 8px;
+  background: #E8E8E8;
+  border-radius: 100px;
+  overflow: hidden;
+}
+
+.map-card-fill {
+  height: 100%;
+  border-radius: 100px;
+  transition: width 0.4s ease;
+}
+
+/* Small color sliver at start of bar when level is current but not yet started */
+.map-card--current .map-card-fill {
+  min-width: 10px;
+}
+
+.map-card-fraction {
+  font-size: 0.72rem;
+  font-weight: 700;
+  color: var(--color-text-primary);
+  white-space: nowrap;
+}
+
+/* Locked state: dim all text and bar */
+.map-card--locked .map-card-name,
+.map-card--locked .map-card-steps,
+.map-card--locked .map-card-fraction {
+  color: #C0C0C0;
+  filter: blur(1px);
+}
+
+.map-card--locked .map-card-bar {
+  background: #E0E0E0;
+}
+
+@media (max-height: 700px) {
+  .map-card { padding: 6px 12px; gap: 10px; }
+  .map-card-mascot,
+  .map-card-locked-icon { width: 46px; height: 46px; }
+  .map-cards { gap: 6px; }
+}

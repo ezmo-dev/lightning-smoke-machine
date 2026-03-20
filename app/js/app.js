@@ -112,6 +112,7 @@ document.getElementById('btn-letsgo').addEventListener('click', function () {
   Storage.setPseudonym(name);
   Storage.setProgress({ ...Storage.getProgress(), step_02: true });
   showScreen('screen-map');
+  loadTutorialMap();
 });
 
 
@@ -160,6 +161,7 @@ function loadWelcomeBack() {
 
 document.getElementById('btn-continue').addEventListener('click', function () {
   showScreen('screen-map');
+  loadTutorialMap();
 });
 
 document.getElementById('btn-startover').addEventListener('click', function () {
@@ -179,6 +181,101 @@ document.getElementById('btn-wb-profile').addEventListener('click', function () 
 });
 
 document.getElementById('btn-wb-help').addEventListener('click', function () {
+  showScreen('screen-help');
+});
+
+
+/* ------------------- */
+/* Screen 3 - Tutorial Map */
+
+// Each level: which steps it owns, its bar color, and the mascot card displays
+const LEVELS = [
+  { name: 'Welcome',      steps: ['step_01', 'step_02'],                                        color: '#F9A836', mascot: 'img/mascot/level-00.png', lastStep: 2  },
+  { name: 'Introduction', steps: ['step_03', 'step_04'],                                        color: '#BCEEB6', mascot: 'img/mascot/level-01.png', lastStep: 4  },
+  { name: 'Hardware',     steps: ['step_05', 'step_06', 'step_07'],                             color: '#ADE4FF', mascot: 'img/mascot/level-02.png', lastStep: 7  },
+  { name: 'Software',     steps: ['step_08', 'step_09', 'step_10', 'step_11', 'step_12'],      color: '#E0BFDE', mascot: 'img/mascot/level-03.png', lastStep: 12 },
+  { name: 'Launch',       steps: ['step_13', 'step_14', 'step_15', 'step_16'],                  color: '#FFCC77', mascot: 'img/mascot/level-04.png', lastStep: 16 },
+];
+
+function loadTutorialMap() {
+  const progress       = Storage.getProgress();
+  const totalCompleted = Object.keys(progress).length;
+  const overallPct     = Math.min((totalCompleted / TOTAL_STEPS) * 100, 100);
+
+  document.getElementById('map-overall-fill').style.width = overallPct + '%';
+
+  const container = document.getElementById('map-cards');
+  container.innerHTML = '';
+
+  let currentFound = false;
+
+  LEVELS.forEach(function (level, index) {
+    const doneInLevel  = level.steps.filter(function (s) { return progress[s]; }).length;
+    const totalInLevel = level.steps.length;
+    const isComplete   = doneInLevel === totalInLevel;
+
+    var state;
+    if (isComplete) {
+      state = 'completed';
+    } else if (!currentFound) {
+      state = 'current';
+      currentFound = true;
+    } else {
+      state = 'locked';
+    }
+
+    const pct      = Math.min((doneInLevel / totalInLevel) * 100, 100);
+    const fraction = state === 'completed' ? '\u26A1/' + totalInLevel : doneInLevel + '/' + totalInLevel;
+    const fillColor = state === 'locked' ? '#D0D0D0' : level.color;
+
+    const stepsText = 'Step ' + String(state === 'current' ? totalCompleted : level.lastStep).padStart(2, '0') + ' of ' + TOTAL_STEPS + ' completed';
+
+    const leftHTML = state === 'locked'
+      ? '<div class="map-card-locked-icon">?</div>'
+      : '<div class="map-card-mascot"><img src="' + level.mascot + '" alt=""/></div>';
+
+    const card = document.createElement('div');
+    card.className = 'map-card map-card--' + state;
+    card.dataset.levelIndex = index;
+    card.innerHTML =
+      leftHTML +
+      '<div class="map-card-info">' +
+        '<span class="map-card-name">' + level.name + '</span>' +
+        '<span class="map-card-steps">' + stepsText + '</span>' +
+        '<div class="map-card-progress">' +
+          '<div class="map-card-bar">' +
+            '<div class="map-card-fill" style="width:' + pct + '%;background:' + fillColor + ';"></div>' +
+          '</div>' +
+          '<span class="map-card-fraction">' + fraction + '</span>' +
+        '</div>' +
+      '</div>';
+
+    card.addEventListener('click', function () {
+      if (state === 'completed') {
+        // TODO: navigate to step list for this level when Screen 4 is built
+        console.log('Level', index, 'completed - navigate to step list');
+      } else if (state === 'current') {
+        showScreen('screen-step');
+      } else {
+        // Locked: shake to signal unavailable
+        card.classList.remove('shake');
+        void card.offsetWidth;
+        card.classList.add('shake');
+        card.addEventListener('animationend', function () {
+          card.classList.remove('shake');
+        }, { once: true });
+      }
+    });
+
+    container.appendChild(card);
+  });
+}
+
+document.getElementById('btn-map-profile').addEventListener('click', function () {
+  showScreen('screen-profile');
+});
+
+document.getElementById('btn-map-help').addEventListener('click', function () {
   showScreen('screen-help');
 });
 
