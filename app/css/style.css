@@ -148,10 +148,10 @@ body {
 .lang-logo {
   position: absolute;
   top: 38%;
-  left: 54%;
-  transform: translate(-50%, -50%) scale(1.2);
+  left: 52.5%;
+  transform: translate(-50%, -50%) scale(1.15) rotate(-10deg);
   width: 100%;
-  filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));
+  filter: drop-shadow(0px 2px 2px rgba(0, 0, 0, 0.25));
 }
 
 /* Row 2: text block, pulled up over the background SVG */
@@ -252,7 +252,7 @@ body {
   left: 48%;
   transform: translate(-50%, -50%) rotate(-15deg);
   width: 80%;
-  filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.18));
+  filter: drop-shadow(0px 2px 2px rgba(0, 0, 0, 0.25));
   z-index: 1;
 }
 
@@ -357,4 +357,128 @@ body {
   font-style: italic;
   color: var(--color-text-tertiary);
   text-align: center;
+}
+
+
+/* ------------------- */
+/* Screen 2b - Welcome Back */
+
+#screen-welcome-back.active {
+  display: grid;
+  grid-template-rows: auto auto 1fr;
+  min-height: 100vh;
+  padding: 0;
+  overflow: hidden;
+}
+
+.wb-topbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: var(--space-md) var(--space-md) 0;
+}
+
+.wb-icon-btn {
+  background: none;
+  border: none;
+  padding: 4px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.wb-icon-btn:active {
+  opacity: 0.6;
+}
+
+/* Hero: halo + logo + caterpillar */
+.wb-hero {
+  position: relative;
+  height: 48vh;
+  line-height: 0;
+}
+
+.wb-bg {
+  --wb-bg-scale: 1.0; /* increase to enlarge background */
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: fill;
+  transform: scale(var(--wb-bg-scale));
+  transform-origin: center top;
+}
+
+.wb-logo {
+  position: absolute;
+  top: 30%;
+  left: 47%;
+  transform: translate(-50%, -50%) rotate(-15deg);
+  width: 65%;
+  filter: drop-shadow(0px 2px 2px rgba(0, 0, 0, 0.35));
+  z-index: 1;
+}
+
+.wb-mascot {
+  position: absolute;
+  top: 25%;
+  left: 59%;
+  transform: translateX(-50%);
+  width: 290px;
+  height: 290px;
+  object-fit: contain;
+  z-index: 2;
+}
+
+/* Bottom zone */
+.wb-bottom {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: var(--space-md) var(--space-md) max(32px, env(safe-area-inset-bottom));
+  gap: var(--space-xs);
+}
+
+.wb-greeting {
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: var(--color-text-primary);
+  text-align: center;
+}
+
+.wb-progress-bar {
+  width: 100%;
+  height: 12px;
+  background: var(--color-bg-card);
+  border-radius: 100px;
+  overflow: hidden;
+  margin-top: var(--space-xs);
+}
+
+.wb-progress-fill {
+  height: 100%;
+  width: 0%;
+  background: var(--level-color, var(--color-action));
+  border-radius: 100px;
+  transition: width 0.4s ease, background 0.4s ease;
+}
+
+.wb-progress-text {
+  font-size: 0.85rem;
+  font-weight: 500;
+  color: var(--color-text-tertiary);
+  text-align: center;
+}
+
+.wb-buttons {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-sm);
+  margin-top: auto;
+}
+
+@media (max-height: 700px) {
+  .wb-hero { height: 40vh; }
+  .wb-mascot { width: 200px; height: 200px; }
 }

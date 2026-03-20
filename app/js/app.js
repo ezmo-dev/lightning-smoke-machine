@@ -23,6 +23,9 @@ const Storage = {
   },
   setProgress(data) { Storage.set('progress', JSON.stringify(data)); },
 
+  getLevel() { return Storage.get('level') || '00'; },
+  setLevel(level) { Storage.set('level', level); },
+
   isFirstVisit() { return !Storage.getPseudonym(); },
 };
 
@@ -67,6 +70,7 @@ function init() {
     showScreen('screen-welcome');
   } else {
     showScreen('screen-welcome-back');
+    loadWelcomeBack();
   }
 }
 
@@ -76,11 +80,13 @@ function init() {
 
 document.getElementById('btn-fr').addEventListener('click', function () {
   Storage.setLanguage('fr');
+  Storage.setProgress({ ...Storage.getProgress(), step_01: true });
   init();
 });
 
 document.getElementById('btn-en').addEventListener('click', function () {
   Storage.setLanguage('en');
+  Storage.setProgress({ ...Storage.getProgress(), step_01: true });
   init();
 });
 
@@ -104,7 +110,76 @@ document.getElementById('btn-letsgo').addEventListener('click', function () {
   }
 
   Storage.setPseudonym(name);
+  Storage.setProgress({ ...Storage.getProgress(), step_02: true });
   showScreen('screen-map');
+});
+
+
+/* ------------------- */
+/* Screen 2b - Welcome Back */
+
+const TOTAL_STEPS = 16;
+
+// Mascot + color upgrades when a full level is completed:
+// level-01 after step 2 (Welcome done)
+// level-02 after step 4 (Intro done)
+// level-03 after step 7 (Hardware done)
+// level-04 after step 12 (Software done)
+function getMascotLevel(completed) {
+  if (completed >= 12) return '04';
+  if (completed >= 7)  return '03';
+  if (completed >= 4)  return '02';
+  if (completed >= 2)  return '01';
+  return '00';
+}
+
+const LEVEL_COLORS = {
+  '00': '#F9A836',
+  '01': '#BCEEB6',
+  '02': '#ADE4FF',
+  '03': '#E0BFDE',
+  '04': '#FFCC77'
+};
+
+function loadWelcomeBack() {
+  const pseudonym = Storage.getPseudonym() || 'Builder';
+  const progress  = Storage.getProgress();
+  const completed = Object.keys(progress).length;
+  const pct       = Math.min((completed / TOTAL_STEPS) * 100, 100);
+  const level     = Storage.getLevel(); // set explicitly by Level Up screen, not calculated
+  const stepStr   = String(completed).padStart(2, '0');
+  const screen    = document.getElementById('screen-welcome-back');
+
+  document.getElementById('wb-pseudonym').textContent     = pseudonym;
+  document.getElementById('wb-progress-fill').style.width = pct + '%';
+  document.getElementById('wb-progress-text').textContent = 'Step ' + stepStr + ' of ' + TOTAL_STEPS + ' completed';
+  document.getElementById('wb-mascot').src                = 'img/mascot/level-' + level + '.png';
+  document.getElementById('wb-logo').src                  = 'img/screen-02b/logo-level-' + level + '.svg';
+  screen.style.setProperty('--level-color', LEVEL_COLORS[level]);
+}
+
+document.getElementById('btn-continue').addEventListener('click', function () {
+  showScreen('screen-map');
+});
+
+document.getElementById('btn-startover').addEventListener('click', function () {
+  // animate bar to zero first, then wipe everything and go to Screen 1
+  document.getElementById('wb-progress-fill').style.width = '0%';
+  setTimeout(function () {
+    Storage.remove('progress');
+    Storage.remove('language');
+    Storage.remove('pseudonym');
+    Storage.setLevel('00');
+    showScreen('screen-language');
+  }, 450); // slightly longer than the 0.4s CSS transition
+});
+
+document.getElementById('btn-wb-profile').addEventListener('click', function () {
+  showScreen('screen-profile');
+});
+
+document.getElementById('btn-wb-help').addEventListener('click', function () {
+  showScreen('screen-help');
 });
 
 
