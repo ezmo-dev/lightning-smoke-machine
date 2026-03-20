@@ -256,6 +256,8 @@ function loadTutorialMap() {
         console.log('Level', index, 'completed - navigate to step list');
       } else if (state === 'current') {
         showScreen('screen-step');
+        const next = getNextStep();
+        if (next) loadStep(next);
       } else {
         // Locked: shake to signal unavailable
         card.classList.remove('shake');
@@ -277,6 +279,107 @@ document.getElementById('btn-map-profile').addEventListener('click', function ()
 
 document.getElementById('btn-map-help').addEventListener('click', function () {
   showScreen('screen-help');
+});
+
+
+/* ------------------- */
+/* Screen 4 - Step Content */
+
+// Map step number (1-16) to its progress key
+function stepKey(n) {
+  return 'step_' + String(n).padStart(2, '0');
+}
+
+// Find the next step number the user should read (first incomplete, starting from 3)
+function getNextStep() {
+  const progress = Storage.getProgress();
+  for (var i = 3; i <= TOTAL_STEPS; i++) {
+    if (!progress[stepKey(i)]) return i;
+  }
+  return null; // all done
+}
+
+var currentStep = null;
+
+function loadStep(stepNum) {
+  currentStep = stepNum;
+  const step = STEPS_CONTENT[stepNum];
+  if (!step) return;
+
+  // Inject content
+  document.getElementById('step-content').innerHTML = step.html;
+
+  // Update counter
+  document.getElementById('step-counter').textContent =
+    'Step ' + String(stepNum).padStart(2, '0') + ' of ' + TOTAL_STEPS;
+
+  // Update topbar progress bar
+  const pct = Math.min(((stepNum - 1) / TOTAL_STEPS) * 100, 100);
+  document.getElementById('step-topbar-fill').style.width = pct + '%';
+
+  // Reset button to outline (unread) state
+  const btn = document.getElementById('btn-mark-read');
+  btn.classList.remove('btn-mark-read--filled');
+  btn.classList.add('btn-mark-read--outline');
+
+  // Scroll detection: activate button when near bottom
+  const content = document.getElementById('step-content');
+  content.scrollTop = 0;
+
+  function checkScroll() {
+    const nearBottom = content.scrollHeight - content.scrollTop - content.clientHeight < 60;
+    if (nearBottom) {
+      btn.classList.remove('btn-mark-read--outline');
+      btn.classList.add('btn-mark-read--filled');
+      content.removeEventListener('scroll', checkScroll);
+    }
+  }
+
+  // Also activate immediately if content is short enough to not need scrolling
+  setTimeout(function () {
+    if (content.scrollHeight <= content.clientHeight + 60) {
+      btn.classList.remove('btn-mark-read--outline');
+      btn.classList.add('btn-mark-read--filled');
+    } else {
+      content.addEventListener('scroll', checkScroll);
+    }
+  }, 100);
+}
+
+document.getElementById('btn-mark-read').addEventListener('click', function () {
+  const btn = this;
+  if (!btn.classList.contains('btn-mark-read--filled')) return; // not yet readable
+
+  // Save progress
+  const progress = Storage.getProgress();
+  progress[stepKey(currentStep)] = true;
+  Storage.setProgress(progress);
+
+  // Determine next step
+  const next = getNextStep();
+  if (next) {
+    loadStep(next);
+  } else {
+    // All steps done — go to tutorial map
+    showScreen('screen-map');
+    loadTutorialMap();
+  }
+});
+
+document.getElementById('btn-step-back').addEventListener('click', function () {
+  if (currentStep > 3) {
+    // Navigate to the previous step within the step screen
+    loadStep(currentStep - 1);
+  } else {
+    // On the first content step — go back to the tutorial map and refresh it
+    goBack();
+    loadTutorialMap();
+  }
+});
+
+document.getElementById('btn-step-home').addEventListener('click', function () {
+  showScreen('screen-map');
+  loadTutorialMap();
 });
 
 

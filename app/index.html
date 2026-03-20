@@ -134,7 +134,36 @@
 
     <!-- Screen 4: Step Content -->
     <div id="screen-step" class="screen">
-      <h2>Step Content</h2>
+
+      <!-- Sticky top bar -->
+      <div class="step-topbar">
+        <button id="btn-step-back" class="step-back-btn" aria-label="Back">
+          <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M12.5 15L7.5 10L12.5 5" stroke="#191817" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+          Back
+        </button>
+        <div class="step-topbar-center">
+          <span id="step-counter" class="step-counter">Step 1 of 16</span>
+          <div class="step-topbar-bar">
+            <div id="step-topbar-fill" class="step-topbar-fill"></div>
+          </div>
+        </div>
+        <button id="btn-step-home" class="wb-icon-btn" aria-label="Tutorial Map">
+          <svg width="28" height="28" viewBox="0 0 28 28" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M4 12L14 4L24 12V24H18V17H10V24H4V12Z" stroke="#191817" stroke-width="2" stroke-linejoin="round"/>
+          </svg>
+        </button>
+      </div>
+
+      <!-- Scrollable content injected by JS -->
+      <div id="step-content" class="step-content"></div>
+
+      <!-- Sticky bottom: gradient fade + button -->
+      <div class="step-bottom">
+        <button id="btn-mark-read" class="btn-mark-read btn-mark-read--outline">MARK AS COMPLETE</button>
+      </div>
+
     </div>
 
     <!-- Screen 4b: Safety Warning -->
@@ -159,6 +188,7 @@
 
   </div><!-- /#app -->
 
+  <script src="js/content.js"></script>
   <script src="js/app.js"></script>
 </body>
 </html>
