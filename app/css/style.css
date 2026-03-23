@@ -591,6 +591,27 @@ body {
   animation: shake 0.35s ease;
 }
 
+/* Start Over row */
+.map-startover-row {
+  --startover-margin-top: 4px;   /* ← monter/descendre le bouton */
+  display: flex;
+  justify-content: center;
+  padding: var(--startover-margin-top) 0 42px;
+  flex-shrink: 0;
+}
+.btn-map-startover {
+  background: none;
+  border: none;
+  font-family: 'Quicksand', sans-serif;
+  font-weight: 600;
+  font-size: 12px;
+  color: var(--color-text-tertiary);
+  text-decoration: underline;
+  text-underline-offset: 2px;
+  cursor: pointer;
+  padding: 8px 16px;
+}
+
 /* Mascot image: scale() enlarges visually without affecting layout */
 .map-card-mascot {
   width: var(--map-mascot-layout);
@@ -939,4 +960,59 @@ body {
   text-decoration: underline;
   text-underline-offset: 2px;
   word-break: break-all;
+}
+
+/* Zoomable image cursor hint */
+.img-zoomable {
+  cursor: zoom-in;
+}
+
+/* Lightbox */
+.lightbox {
+  display: none;
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.92);
+  z-index: 2000;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+.lightbox.active {
+  display: flex;
+}
+.lightbox-close {
+  position: absolute;
+  top: 16px;
+  right: 16px;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  border: none;
+  background: rgba(255, 255, 255, 0.15);
+  color: #fff;
+  font-size: 18px;
+  line-height: 1;
+  cursor: pointer;
+  z-index: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.lightbox-container {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+.lightbox-img {
+  max-width: 100%;
+  max-height: 100vh;
+  object-fit: contain;
+  transform-origin: center center;
+  user-select: none;
+  -webkit-user-drag: none;
+  will-change: transform;
 }

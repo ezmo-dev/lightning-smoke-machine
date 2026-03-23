@@ -130,6 +130,11 @@
       <!-- Cards injected by JS -->
       <div id="map-cards" class="map-cards"></div>
 
+      <!-- Start Over -->
+      <div class="map-startover-row">
+        <button id="btn-map-startover" class="btn-map-startover">START OVER</button>
+      </div>
+
     </div>
 
     <!-- Screen 4: Step Content -->
@@ -187,6 +192,14 @@
     </div>
 
   </div><!-- /#app -->
+
+  <!-- Lightbox -->
+  <div id="lightbox" class="lightbox" role="dialog" aria-modal="true">
+    <button id="lightbox-close" class="lightbox-close" aria-label="Close">✕</button>
+    <div class="lightbox-container">
+      <img id="lightbox-img" class="lightbox-img" src="" alt="" />
+    </div>
+  </div>
 
   <script src="js/content.js"></script>
   <script src="js/app.js"></script>

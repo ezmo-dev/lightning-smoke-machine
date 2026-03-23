@@ -281,6 +281,17 @@ document.getElementById('btn-map-help').addEventListener('click', function () {
   showScreen('screen-help');
 });
 
+document.getElementById('btn-map-startover').addEventListener('click', function () {
+  document.getElementById('map-overall-fill').style.width = '0%';
+  setTimeout(function () {
+    Storage.remove('progress');
+    Storage.remove('language');
+    Storage.remove('pseudonym');
+    Storage.setLevel('00');
+    showScreen('screen-language');
+  }, 450);
+});
+
 
 /* ------------------- */
 /* Screen 4 - Step Content */
@@ -308,6 +319,13 @@ function loadStep(stepNum) {
 
   // Inject content
   document.getElementById('step-content').innerHTML = step.html;
+
+  // Mark zoomable images
+  document.querySelectorAll('#step-content .step-img-card img').forEach(function (img) {
+    if (isZoomableImage(img.getAttribute('src'))) {
+      img.classList.add('img-zoomable');
+    }
+  });
 
   // Update counter
   document.getElementById('step-counter').textContent =
@@ -380,6 +398,90 @@ document.getElementById('btn-step-back').addEventListener('click', function () {
 document.getElementById('btn-step-home').addEventListener('click', function () {
   showScreen('screen-map');
   loadTutorialMap();
+});
+
+
+/* ------------------- */
+/* Lightbox */
+
+function isZoomableImage(src) {
+  var match = src && src.match(/(\d+)\.webp/);
+  if (!match) return false;
+  var n = parseInt(match[1]);
+  return n === 7 || (n >= 13 && n <= 42);
+}
+
+var lbScale    = 1;
+var lbLastDist = 0;
+var lbLastTap  = 0;
+
+function openLightbox(src) {
+  var img = document.getElementById('lightbox-img');
+  img.src = src;
+  img.style.transition = '';
+  img.style.transform  = 'scale(1)';
+  lbScale = 1;
+  document.getElementById('lightbox').classList.add('active');
+}
+
+function closeLightbox() {
+  document.getElementById('lightbox').classList.remove('active');
+}
+
+document.getElementById('lightbox-close').addEventListener('click', closeLightbox);
+
+// Tap on dark backdrop → close
+document.getElementById('lightbox').addEventListener('click', function (e) {
+  if (e.target === this || e.target.classList.contains('lightbox-container')) {
+    closeLightbox();
+  }
+});
+
+var lbImg = document.getElementById('lightbox-img');
+
+// Pinch-to-zoom
+lbImg.addEventListener('touchstart', function (e) {
+  if (e.touches.length === 2) {
+    lbLastDist = Math.hypot(
+      e.touches[0].clientX - e.touches[1].clientX,
+      e.touches[0].clientY - e.touches[1].clientY
+    );
+  }
+}, { passive: true });
+
+lbImg.addEventListener('touchmove', function (e) {
+  if (e.touches.length === 2) {
+    e.preventDefault();
+    var dist = Math.hypot(
+      e.touches[0].clientX - e.touches[1].clientX,
+      e.touches[0].clientY - e.touches[1].clientY
+    );
+    lbScale = Math.min(Math.max(lbScale * (dist / lbLastDist), 0.8), 6);
+    this.style.transform = 'scale(' + lbScale + ')';
+    lbLastDist = dist;
+  }
+}, { passive: false });
+
+// Double-tap to toggle zoom 1× ↔ 2.5×
+lbImg.addEventListener('touchend', function (e) {
+  if (e.changedTouches.length !== 1) return;
+  var now = Date.now();
+  if (now - lbLastTap < 280) {
+    lbScale = lbScale > 1.2 ? 1 : 2.5;
+    this.style.transition  = 'transform 0.25s ease';
+    this.style.transform   = 'scale(' + lbScale + ')';
+    var self = this;
+    setTimeout(function () { self.style.transition = ''; }, 260);
+  }
+  lbLastTap = now;
+});
+
+// Click delegation on step content
+document.getElementById('step-content').addEventListener('click', function (e) {
+  var img = e.target.closest('.step-img-card img');
+  if (img && isZoomableImage(img.getAttribute('src'))) {
+    openLightbox(img.src);
+  }
 });
 
 
