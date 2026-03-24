@@ -65,6 +65,53 @@ const STEPS_CONTENT = [
         <img src="../assets/6.webp" alt="Fog machine" />
       </div>
       <p><strong>1 x Bottle of liquid</strong> compatible with your smoke machine</p>
+
+      <h2>Shopping list</h2>
+      <table>
+        <thead>
+          <tr><th>Components</th><th>Shopping link</th><th>Price</th></tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>ESP32-WROOM-32</td>
+            <td><a href="https://www.amazon.fr/dp/B071P98VTG?ref=ppx_yo2ov_dt_b_fed_asin_title&th=1" target="_blank" rel="noopener noreferrer">Amazon FR</a></td>
+            <td>11,99€</td>
+          </tr>
+          <tr>
+            <td>Relay module</td>
+            <td><a href="https://www.amazon.fr/DollaTek-Module-Blindage-optocoupleur-déclencheurs/dp/B07DJ4NRC1/ref=sr_1_6?__mk_fr_FR=ÅMÅŽÕÑ&crid=30DYQFAX3DDX&dib=eyJ2IjoiMSJ9.IR9JINjvav3UgOQ4RjMXMBqqj6Xtut-1V72dzeyXD9ErX6IHjq_hZjQo-XwIaYODkrYjatKYz_Lupr9w_zpVjuCpV7NigHtneD6Io0v4Tq3DfaaqgHSGv7nUkI5c9XC1KN1gtOWuflQJY50JzodGnwckowrCK2Oq9mrFOE1zkIHpMMYNZD6PkgixtXR3SJDgLR37-4HTn2V70mZN4-2CrTH9HFLzu8jIk2A4921zSjUrCMPfjqZHYZnF2aFRhv_CFFNsDCRO3rqz1m3UYliN70aOfx5mb4zAy6IGUfh6RGU.ZnagbLih0Lq9tnIDfRMdTEK1EhfweD6i29EkxnZ0Ee0&dib_tag=se&keywords=Module+Relais+1+Canal%2C+5V+1+Channel+Relay+Module+avec+Optocoupleur&qid=1774344293&s=industrial&sprefix=%2Cindustrial%2C599&sr=1-6" target="_blank" rel="noopener noreferrer">Amazon FR</a></td>
+            <td>4,99€</td>
+          </tr>
+          <tr>
+            <td>Dupont cables</td>
+            <td><a href="https://www.amazon.fr/FACAIIO-câbles-démarrage-platine-dexpérimentation/dp/B0G4VMCD3J/ref=sr_1_7?__mk_fr_FR=ÅMÅŽÕÑ&crid=3VO2GTQLTMWT1&dib=eyJ2IjoiMSJ9.3jFUDx4E3EmYF6UGOpgDbNGJj8LCDG3WCdg3slBQNGyR8PcdXiSwp6sKUQd0ktOH88_xpzhwFioktOyruD2cy2Ii529QmWP92d4L2WcRxh31Db3J_-KgjaFVCbXh-zRhbj1aaak8mLPalakcFS7H0_9VkGa7csynin2vLOUp8DeOxyhPHt8pN8YbEO4fPx80SNM9leau_T3vm-HJnRprqW3otNqbdSHaHWatrCrz7JmoU0SOWZS-q6J-kiI5uq95KJPUGdFIyGeeqAQXx3SZs-O5t5SheAYaK1KITKDAKFY.9WeZLrTH9jRgDZkefsqAf1oTnHUct5akwGFvr0Z2pfA&dib_tag=se&keywords=dupont+cable+male%2Fmale+male%2Ffemelle&qid=1774344513&s=industrial&sprefix=dupont+cable+male%2Fmale+male%2Ffeme%2Cindustrial%2C501&sr=1-7" target="_blank" rel="noopener noreferrer">Amazon FR</a></td>
+            <td>6,64€</td>
+          </tr>
+          <tr>
+            <td>Power supply**</td>
+            <td><a href="https://www.amazon.fr/Intenso-Powerbank-Batterie-Compatible-Smartphone/dp/B07Z6N28RD/ref=sr_1_6?__mk_fr_FR=ÅMÅŽÕÑ&crid=WOUNF41WBYVT&dib=eyJ2IjoiMSJ9.zRApVQiF0NNa0KCj5fBewUFrmNt3B33I5i51pnj_XJ73sh0NAXdQXW3bBGcIA-cXSu2LQC-UHqcEGVYZdMAX3OqvBg3FiXtCretU8UZ8ZCv91kkEZuf4UONSe1pG98WfSxvxz8fmgmyQbrGsVXgcPa58bMFACez6QbQYbRIs48-i_2E9QpHgXEJOAxFCoIbXR4Ydqfm5d9hxuy0xm3eFv3ZYp7vTZOWaP-de5QNZdNmqPrjRZt6wVIaB_Zxt6b1u7rbNmf-XZVqYkMI9j6gImH68QaRzwzeWtfGbX2SmZUY.pQg6DUsaQyZlTnD4fP7RdjUxETA1MAhqY1UjvBuv0ag&dib_tag=se&keywords=5V%2F2A%2Bpower%2Bbank%2Bwith%2B5000mAh&qid=1774344955&s=electronics&sprefix=power%2Bbank%2B5v%2Celectronics%2C710&sr=1-6&th=1" target="_blank" rel="noopener noreferrer">Amazon FR</a></td>
+            <td>16,05€</td>
+          </tr>
+          <tr>
+            <td>Micro-USB DATA Cable</td>
+            <td><a href="https://www.amazon.fr/Amazon-Kindle-Micro-Cable-Transfer/dp/B002VGRKKY/ref=sr_1_10?__mk_fr_FR=ÅMÅŽÕÑ&crid=3ODUFRJQNWK4Q&dib=eyJ2IjoiMSJ9.Wnz4Ir_Ecv8_YMyf7A1Bg7TuYrCYff3Dj1ag5DHwQYW46SvLZMXySbeHMmZPK3HxCCR_au8qzGeTZET1G9nCMIHYj8-yNJGtPLCwkewV6ikVgkYH6TGOdsSI1nmCWhO3u-7P3mbdYrQ2pkifUTAn4Y3ctVVWFaAu3byET_YiNTmVp8eh3f3W3PPCSvLpqmFL3dzK6moNJeRV6vuUPgdsAbWojoHzUUCQkQlKqnJ5KaxV2CEQCTKYNCF3Vprjfs384HZCz99ONyt5o11BFqpXadYb0Zxu4HminPvOHGm2H7U.jAF5-H4IwylLr0i6SLofBSDRY6v1wGL0nZQCFUiyBAY&dib_tag=se&keywords=micro+usb+data&qid=1774345156&sprefix=micro+usb+da%2Caps%2C535&sr=8-10" target="_blank" rel="noopener noreferrer">Amazon FR</a></td>
+            <td>4,69€</td>
+          </tr>
+          <tr>
+            <td>Smoke machine + Liquid</td>
+            <td><a href="https://www.amazon.fr/dp/B0CK8M7KBD?ref_=ppx_hzsearch_conn_dt_b_fed_asin_title_6&th=1" target="_blank" rel="noopener noreferrer">Amazon FR</a></td>
+            <td>37,90€</td>
+          </tr>
+          <tr>
+            <td><strong>TOTAL</strong></td>
+            <td></td>
+            <td><strong>82,26€</strong></td>
+          </tr>
+        </tbody>
+      </table>
+      <p><em>*Prices and availability may change. If something looks wrong or a link is broken, let us know and we will fix it!</em></p>
+      <p><em>**Power supply: any 5V USB power bank with 5000mAh or more will work. For short demos (a few hours), any brand is fine. If your ESP32 loses power after a few seconds, your power bank's auto-shutoff may be too aggressive — try a different one or keep a phone connected to the second USB port to keep the current high enough.</em></p>
+
       <h2>Tools</h2>
       <ul>
         <li>Soldering iron + tin (if soldering)</li>
