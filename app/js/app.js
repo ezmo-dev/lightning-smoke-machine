@@ -386,19 +386,25 @@ function loadStep(stepNum) {
 
 document.getElementById('btn-mark-read').addEventListener('click', function () {
   const btn = this;
-  if (!btn.classList.contains('btn-mark-read--filled')) return; // not yet readable
+  if (!btn.classList.contains('btn-mark-read--filled')) return;
 
   // Save progress
   const progress = Storage.getProgress();
   progress[stepKey(currentStep)] = true;
   Storage.setProgress(progress);
 
+  // After step 4: show safety screen if not yet acknowledged
+  if (currentStep === 4 && !Storage.get('safety_ack')) {
+    showScreen('screen-safety');
+    loadSafetyScreen();
+    return;
+  }
+
   // Determine next step
   const next = getNextStep();
   if (next) {
     loadStep(next);
   } else {
-    // All steps done — go to tutorial map
     showScreen('screen-map');
     loadTutorialMap();
   }
@@ -416,6 +422,94 @@ document.getElementById('btn-step-back').addEventListener('click', function () {
 });
 
 document.getElementById('btn-step-home').addEventListener('click', function () {
+  showScreen('screen-map');
+  loadTutorialMap();
+});
+
+
+/* ------------------- */
+/* Screen 4a - Safety Warning */
+
+function loadSafetyScreen() {
+  // Reset checkboxes
+  ['safety-cb1', 'safety-cb2', 'safety-cb3'].forEach(function (id) {
+    document.getElementById(id).checked = false;
+  });
+
+  // Reset scroll
+  const scroll = document.getElementById('safety-scroll');
+  scroll.scrollTop = 0;
+
+  // Topbar fill: step 04 of 16, level 01 color (#BCEEB6)
+  const fill = document.getElementById('safety-topbar-fill');
+  fill.style.width = ((4 / TOTAL_STEPS) * 100) + '%';
+  fill.style.background = LEVEL_COLORS['01'];
+
+  // Reset button
+  updateSafetyButton();
+
+  // Scroll detection
+  scroll.addEventListener('scroll', onSafetyScroll);
+}
+
+function isSafetyReady() {
+  const allChecked = ['safety-cb1', 'safety-cb2', 'safety-cb3'].every(function (id) {
+    return document.getElementById(id).checked;
+  });
+  const scroll = document.getElementById('safety-scroll');
+  const nearBottom = scroll.scrollHeight - scroll.scrollTop - scroll.clientHeight < 60;
+  return allChecked && nearBottom;
+}
+
+function updateSafetyButton() {
+  const btn = document.getElementById('btn-safety-continue');
+  if (isSafetyReady()) {
+    btn.classList.remove('btn-mark-read--outline');
+    btn.classList.add('btn-mark-read--filled');
+  } else {
+    btn.classList.remove('btn-mark-read--filled');
+    btn.classList.add('btn-mark-read--outline');
+  }
+}
+
+function onSafetyScroll() {
+  updateSafetyButton();
+}
+
+// Checkbox changes update button state
+['safety-cb1', 'safety-cb2', 'safety-cb3'].forEach(function (id) {
+  document.getElementById(id).addEventListener('change', updateSafetyButton);
+});
+
+document.getElementById('btn-safety-continue').addEventListener('click', function () {
+  if (!isSafetyReady()) {
+    // Shake button
+    const btn = this;
+    btn.classList.add('shake');
+    btn.addEventListener('animationend', function () { btn.classList.remove('shake'); }, { once: true });
+
+    // Shake unchecked checkbox rows
+    ['safety-cb1', 'safety-cb2', 'safety-cb3'].forEach(function (id) {
+      if (!document.getElementById(id).checked) {
+        const row = document.getElementById(id).closest('.safety-check');
+        row.classList.add('shake');
+        row.addEventListener('animationend', function () { row.classList.remove('shake'); }, { once: true });
+      }
+    });
+    return;
+  }
+
+  // Save acknowledgment and proceed to step 5
+  Storage.set('safety_ack', '1');
+  // Remove scroll listener to avoid memory leak
+  document.getElementById('safety-scroll').removeEventListener('scroll', onSafetyScroll);
+  // Navigate to screen-step and load step 5
+  showScreen('screen-step');
+  loadStep(5);
+});
+
+document.getElementById('btn-safety-back').addEventListener('click', function () {
+  document.getElementById('safety-scroll').removeEventListener('scroll', onSafetyScroll);
   showScreen('screen-map');
   loadTutorialMap();
 });
