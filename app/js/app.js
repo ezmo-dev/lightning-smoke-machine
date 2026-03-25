@@ -341,9 +341,11 @@ function loadStep(stepNum) {
   document.getElementById('step-counter').textContent =
     'Step ' + String(stepNum).padStart(2, '0') + ' of ' + TOTAL_STEPS;
 
-  // Update topbar progress bar
-  const pct = Math.min(((stepNum - 1) / TOTAL_STEPS) * 100, 100);
-  document.getElementById('step-topbar-fill').style.width = pct + '%';
+  // Update topbar progress bar (width = current step position, color = current level)
+  const pct = Math.min((stepNum / TOTAL_STEPS) * 100, 100);
+  const fill = document.getElementById('step-topbar-fill');
+  fill.style.width = pct + '%';
+  fill.style.background = LEVEL_COLORS[Storage.getLevel()];
 
   // Reset button to outline (unread) state
   const btn = document.getElementById('btn-mark-read');
