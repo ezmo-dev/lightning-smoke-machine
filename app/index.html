@@ -183,9 +183,79 @@
 
 
     <!-- ------------------- -->
-    <!-- Screen 4b: Safety Warning -->
+    <!-- Screen 4a: Safety Warning -->
     <div id="screen-safety" class="screen">
-      <h2>Safety Warning</h2>
+
+      <!-- Sticky top bar (same pattern as screen-step) -->
+      <div class="safety-topbar">
+        <button id="btn-safety-back" class="step-back-btn" aria-label="Back">
+          <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M12.5 15L7.5 10L12.5 5" stroke="#191817" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+          Back
+        </button>
+        <div class="step-topbar-center">
+          <span class="step-counter">Step 04 of 16</span>
+          <div class="step-topbar-bar">
+            <div id="safety-topbar-fill" class="step-topbar-fill"></div>
+          </div>
+        </div>
+        <button class="wb-icon-btn" aria-label="Help">
+          <svg width="28" height="28" viewBox="0 0 28 28" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <circle cx="14" cy="14" r="12" stroke="#191817" stroke-width="2"/>
+            <text x="14" y="19" text-anchor="middle" font-family="Quicksand, sans-serif" font-size="14" font-weight="700" fill="#191817">?</text>
+          </svg>
+        </button>
+      </div>
+
+      <!-- Scrollable body (hero + content scroll together) -->
+      <div id="safety-scroll" class="safety-scroll">
+
+        <!-- Hero: halo bg + caterpillar (scrolls away) -->
+        <div class="safety-hero">
+          <img src="img/screen-04a/background-screen-04a.svg" class="safety-halo" alt="" />
+          <img src="img/mascot/safety.png" class="safety-mascot" alt="" />
+        </div>
+
+        <!-- Text content -->
+        <div class="safety-content">
+          <h1 class="safety-title">&#9888; SAFETY WARNING &#9888;</h1>
+          <h2 class="safety-subtitle">READ BEFORE CONTINUING</h2>
+
+          <p class="safety-p">This project involves a fog machine connected to a 220V mains supply.</p>
+          <p class="safety-p safety-p--danger">Improper operation can result in fatal electrocution or fire.</p>
+
+          <p class="safety-label">Non-negotiable rules:</p>
+
+          <!-- Checkbox 1 -->
+          <label class="safety-check">
+            <input type="checkbox" class="safety-check-input" id="safety-cb1" />
+            <span class="safety-check-box"></span>
+            <span class="safety-check-text">ALWAYS disconnect the smoke machine from the mains before opening the remote control or handling the wiring</span>
+          </label>
+
+          <!-- Checkbox 2 -->
+          <label class="safety-check">
+            <input type="checkbox" class="safety-check-input" id="safety-cb2" />
+            <span class="safety-check-box"></span>
+            <span class="safety-check-text">Remove the 12V battery from the remote control before any handling (risk of short-circuit and damage to components)</span>
+          </label>
+
+          <!-- Checkbox 3 -->
+          <label class="safety-check">
+            <input type="checkbox" class="safety-check-input" id="safety-cb3" />
+            <span class="safety-check-box"></span>
+            <span class="safety-check-text">Check that all your connections are isolated before reconnecting anything</span>
+          </label>
+        </div>
+
+      </div><!-- /safety-scroll -->
+
+      <!-- Sticky bottom -->
+      <div class="step-bottom">
+        <button id="btn-safety-continue" class="btn-mark-read btn-mark-read--outline">I understand and continue</button>
+      </div>
+
     </div>
 
     
