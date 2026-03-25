@@ -13,12 +13,12 @@ const STEPS_CONTENT = [
     html: `
       <h1>How does it work?</h1>
       <p>This project transforms a classic smoke machine into a device payable in Bitcoin via Lightning Network. Each payment automatically triggers a jet of smoke!</p>
-      <div class="step-img-card">
+      <div class="step-img-plain">
         <img src="../assets/cover.webp" alt="Lightning Smoke Machine demo" />
       </div>
       <p><em>Real test on the main stage at Plan B Forum, San Salvador 2025</em></p>
       <h2>System architecture</h2>
-      <div class="step-img-card">
+      <div class="step-img-plain">
         <img src="../assets/7.webp" alt="System architecture diagram" />
       </div>
       <p>The system chain:</p>
@@ -40,28 +40,28 @@ const STEPS_CONTENT = [
       <h2>Electronic components</h2>
       <p><strong>1 x Microcontroller — ESP32-WROOM-32</strong></p>
       <p>A compact, low-cost WiFi/Bluetooth microcontroller for connecting electronic devices to the Internet and controlling them remotely.</p>
-      <div class="step-img-card">
+      <div class="step-img-plain">
         <img src="../assets/1.webp" alt="ESP32-WROOM-32" />
       </div>
       <p><strong>1 x Relay module — 5V with optocoupler</strong></p>
       <p>A relay is like a switch that the ESP32 can operate to turn the smoke machine on or off.</p>
-      <div class="step-img-card">
+      <div class="step-img-plain">
         <img src="../assets/2.webp" alt="Relay module" />
       </div>
       <p><strong>~10 x Dupont cables — Male/Male and Male/Female</strong></p>
-      <div class="step-img-card">
+      <div class="step-img-plain">
         <img src="../assets/3.webp" alt="Dupont cables" />
       </div>
       <p><strong>1 x Power supply for ESP32 — 5V USB or Li-Po battery</strong></p>
-      <div class="step-img-card">
+      <div class="step-img-plain">
         <img src="../assets/4.webp" alt="Power supply" />
       </div>
       <p><strong>1 x Micro-USB cable</strong> — connection between ESP32 and power supply</p>
-      <div class="step-img-card">
+      <div class="step-img-plain">
         <img src="../assets/5.webp" alt="Micro-USB cable" />
       </div>
       <p><strong>1 x 220V fog machine with 12V battery remote control</strong></p>
-      <div class="step-img-card">
+      <div class="step-img-plain">
         <img src="../assets/6.webp" alt="Fog machine" />
       </div>
       <p><strong>1 x Bottle of liquid</strong> compatible with your smoke machine</p>
@@ -182,7 +182,7 @@ const STEPS_CONTENT = [
       <h2>Logic</h2>
       <p>When the ESP32 <strong>activates</strong> the relay, it connects COM and NO — identical to pressing the remote control button.</p>
       <p>When the ESP32 <strong>cuts</strong> the relay, COM and NO separate — identical to releasing the button.</p>
-      <div class="step-img-card">
+      <div class="step-img-plain">
         <img src="../assets/10.webp" alt="Remote control to relay wiring" />
       </div>
     `
@@ -210,10 +210,10 @@ const STEPS_CONTENT = [
         <li>GPIO 21 used for control signal</li>
         <li>No visible short circuit</li>
       </ul>
-      <div class="step-img-card">
+      <div class="step-img-plain">
         <img src="../assets/11.webp" alt="ESP32 to relay wiring" />
       </div>
-      <div class="step-img-card">
+      <div class="step-img-plain">
         <img src="../assets/12.webp" alt="Hardware overview" />
       </div>
       <h2>Hardware Checkpoint</h2>
@@ -238,23 +238,23 @@ const STEPS_CONTENT = [
         <li>Create your first store</li>
         <li>On the left-hand side, scroll to the bottom and go to <strong>"Manage Plugins"</strong></li>
       </ol>
-      <div class="step-img-card">
+      <div class="step-img-plain">
         <img src="../assets/13.webp" alt="BTCPay manage plugins" />
       </div>
       <p>4. Install the <strong>BitcoinSwitch</strong> and <strong>Blink</strong> plugins.</p>
-      <div class="step-img-card">
+      <div class="step-img-plain">
         <img src="../assets/14.webp" alt="Plugin list" />
       </div>
       <p>5. Scroll down and click <strong>"Install"</strong> for each plugin.</p>
-      <div class="step-img-card">
+      <div class="step-img-plain">
         <img src="../assets/15.webp" alt="Install button" />
       </div>
       <p>6. Once complete, <strong>restart BTCPay Server</strong> and wait 1 minute.</p>
-      <div class="step-img-card">
+      <div class="step-img-plain">
         <img src="../assets/16.webp" alt="Restart BTCPay Server" />
       </div>
       <p>7. Back in "Manage Plugins", confirm both plugins are installed.</p>
-      <div class="step-img-card">
+      <div class="step-img-plain">
         <img src="../assets/17.webp" alt="Plugins installed" />
       </div>
     `
@@ -271,29 +271,29 @@ const STEPS_CONTENT = [
       <ul>
         <li>Access the API interface at <strong><a href="https://www.blink.sv/en/api" target="_blank" rel="noopener noreferrer">blink.sv/en/api</a></strong> and log in</li>
       </ul>
-      <div class="step-img-card">
+      <div class="step-img-plain">
         <img src="../assets/18.webp" alt="Blink API interface" />
       </div>
       <ul>
         <li>Go to the <strong>API Keys</strong> tab</li>
       </ul>
-      <div class="step-img-card">
+      <div class="step-img-plain">
         <img src="../assets/19.webp" alt="API Keys tab" />
       </div>
       <ul>
         <li>Click <strong>"+"</strong> in the top right corner</li>
       </ul>
-      <div class="step-img-card">
+      <div class="step-img-plain">
         <img src="../assets/20.webp" alt="Add API key" />
       </div>
       <ul>
         <li>Give your API key a name and note it down — <strong>you will only see it once</strong></li>
       </ul>
       <pre><code>blink_mZ5KxxxxxxxxxxxxxNbmX</code></pre>
-      <div class="step-img-card">
+      <div class="step-img-plain">
         <img src="../assets/21.webp" alt="API key name" />
       </div>
-      <div class="step-img-card">
+      <div class="step-img-plain">
         <img src="../assets/22.webp" alt="API key created" />
       </div>
     `
@@ -306,27 +306,30 @@ const STEPS_CONTENT = [
       <h1>Step 2 (continued): Connect Blink to BTCPay Server</h1>
       <h2>3 — Connect Blink to BTCPay Server</h2>
       <p>In BTCPay Server, navigate to: <strong>Wallet -> Lightning</strong></p>
-      <div class="step-img-card">
+      <div class="step-img-plain">
         <img src="../assets/23.webp" alt="Wallet Lightning menu" />
       </div>
       <p>Click <strong>"Use a custom node"</strong> and paste the connection string:</p>
-      <pre><code>type=blink;server=https://api.blink.sv/graphql;api-key=YOUR_KEY;wallet-id=YOUR_WALLET_ID</code></pre>
-      <p><strong>Important:</strong> do not modify <code>type=blink;server=https://api.blink.sv/graphql</code> — only replace <code>api-key</code> and <code>wallet-id</code> with your values.</p>
+      <pre><code>type=blink;
+server=https://api.blink.sv/graphql;
+api-key=YOUR_KEY;
+wallet-id=YOUR_WALLET_ID</code></pre>
+      <p><strong>Important:</strong> do not modify the first two lines — only replace <code>api-key</code> and <code>wallet-id</code> with your values.</p>
       <p>Click <strong>"Test connection"</strong> then <strong>"Save"</strong>.</p>
-      <div class="step-img-card">
+      <div class="step-img-plain">
         <img src="../assets/24.webp" alt="Custom node config" />
       </div>
       <p>Check that the connection is established (green status).</p>
-      <div class="step-img-card">
+      <div class="step-img-plain">
         <img src="../assets/25.webp" alt="Green connection status" />
       </div>
       <h2>4 — Create a Point of Sale (PoS)</h2>
       <p>In BTCPay Server, go to <strong>Plugins -> Point of sale</strong></p>
-      <div class="step-img-card">
+      <div class="step-img-plain">
         <img src="../assets/26.webp" alt="Point of sale menu" />
       </div>
       <p>Give your PoS a name and click <strong>Create</strong>.</p>
-      <div class="step-img-card">
+      <div class="step-img-plain">
         <img src="../assets/27.webp" alt="Create PoS" />
       </div>
       <p>PoS configuration:</p>
@@ -335,14 +338,14 @@ const STEPS_CONTENT = [
         <li>Currency = <strong>SATS</strong></li>
         <li>Click <strong>SAVE</strong></li>
       </ul>
-      <div class="step-img-card">
+      <div class="step-img-plain">
         <img src="../assets/28.webp" alt="PoS settings" />
       </div>
       <p>Product configuration — delete all default products, then click <strong>"add item"</strong>.</p>
-      <div class="step-img-card">
+      <div class="step-img-plain">
         <img src="../assets/29.webp" alt="Delete default products" />
       </div>
-      <div class="step-img-card">
+      <div class="step-img-plain">
         <img src="../assets/30.webp" alt="Add item" />
       </div>
       <p>Configure the product:</p>
@@ -353,7 +356,7 @@ const STEPS_CONTENT = [
         <li>Bitcoin switch duration (ms): <strong>5000</strong></li>
         <li>Click <strong>Close</strong> then <strong>Save</strong></li>
       </ul>
-      <div class="step-img-card">
+      <div class="step-img-plain">
         <img src="../assets/31.webp" alt="Product configuration" />
       </div>
     `
@@ -366,7 +369,7 @@ const STEPS_CONTENT = [
       <h1>Step 3: Firmware — Flashing the ESP32</h1>
       <h2>1 — Go to the flash site</h2>
       <p>Navigate to: <strong><a href="https://bitcoinswitch.lnbits.com" target="_blank" rel="noopener noreferrer">bitcoinswitch.lnbits.com</a></strong></p>
-      <div class="step-img-card">
+      <div class="step-img-plain">
         <img src="../assets/32.webp" alt="BitcoinSwitch flash site" />
       </div>
       <h2>2 — Flash the BitcoinSwitch firmware</h2>
@@ -375,15 +378,15 @@ const STEPS_CONTENT = [
         <li>Click <strong>"Connect to Device"</strong></li>
         <li>Select the USB port of your ESP32, then click <strong>Connect</strong></li>
       </ul>
-      <div class="step-img-card">
+      <div class="step-img-plain">
         <img src="../assets/33.webp" alt="Select USB port" />
       </div>
       <p>In the <em>T-Display</em> section, click <strong>"Upload Firmware"</strong> for the latest version (currently: <em>bitcoinSwitch T-Display v1.0.1</em>).</p>
-      <div class="step-img-card">
+      <div class="step-img-plain">
         <img src="../assets/34.webp" alt="Upload firmware" />
       </div>
       <p>Wait for the upload to complete — done when the logs show <strong>"Leaving..."</strong></p>
-      <div class="step-img-card">
+      <div class="step-img-plain">
         <img src="../assets/35.webp" alt="Upload complete" />
       </div>
       <p>Unplug the ESP32.</p>
@@ -398,7 +401,7 @@ const STEPS_CONTENT = [
 Config file does not exist.
 Entering config mode. until we receive /config-done.</code></pre>
       <p><em>(Normal — no config yet, but firmware is installed.)</em></p>
-      <div class="step-img-card">
+      <div class="step-img-plain">
         <img src="../assets/36.webp" alt="Firmware logs" />
       </div>
     `
@@ -416,11 +419,11 @@ Entering config mode. until we receive /config-done.</code></pre>
         <li>Open your BTCPay Server and go to the PoS you created</li>
         <li>Click <strong>"View"</strong> to open your PoS in the browser</li>
       </ol>
-      <div class="step-img-card">
+      <div class="step-img-plain">
         <img src="../assets/37.webp" alt="View PoS" />
       </div>
       <p>Copy the URL from the browser address bar:</p>
-      <div class="step-img-card">
+      <div class="step-img-plain">
         <img src="../assets/38.webp" alt="Copy URL" />
       </div>
       <p>Transform it:</p>
@@ -431,20 +434,20 @@ Entering config mode. until we receive /config-done.</code></pre>
       <h2>5 — Configure WiFi and WebSocket</h2>
       <p>Return to <strong><a href="https://bitcoinswitch.lnbits.com" target="_blank" rel="noopener noreferrer">bitcoinswitch.lnbits.com</a></strong> with your ESP32 connected.</p>
       <p>Go to <strong>Configure Device -> Wifi Settings</strong> and fill in your WiFi SSID and password.</p>
-      <div class="step-img-card">
+      <div class="step-img-plain">
         <img src="../assets/39.webp" alt="WiFi settings" />
       </div>
       <p>In the <em>LNbits Device URL</em> section, paste the WebSocket URL, then click <strong>"Upload config"</strong>.</p>
-      <div class="step-img-card">
+      <div class="step-img-plain">
         <img src="../assets/40.webp" alt="Upload config" />
       </div>
-      <div class="step-img-card">
+      <div class="step-img-plain">
         <img src="../assets/41.webp" alt="Config uploaded" />
       </div>
       <p>Wait for the WebSocket connection. You should see:</p>
       <pre><code>WiFi connection established!
 [WebSocket] Connected to url: ...</code></pre>
-      <div class="step-img-card">
+      <div class="step-img-plain">
         <img src="../assets/42.webp" alt="WebSocket connected" />
       </div>
       <p>You can now disconnect the ESP32.</p>

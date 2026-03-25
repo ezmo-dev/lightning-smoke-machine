@@ -842,7 +842,12 @@ body {
   margin: var(--space-sm) 0;
 }
 
-.step-img-card img {
+.step-img-plain {
+  margin: var(--space-sm) 0;
+}
+
+.step-img-card img,
+.step-img-plain img {
   display: block;
   width: 100%;
   border-radius: 12px;

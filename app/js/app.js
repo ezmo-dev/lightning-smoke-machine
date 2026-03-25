@@ -69,8 +69,8 @@ function init() {
   } else if (Storage.isFirstVisit()) {
     showScreen('screen-welcome');
   } else {
+    loadWelcomeBack(); // update assets before showing to avoid level-00 flash
     showScreen('screen-welcome-back');
-    loadWelcomeBack();
   }
 }
 
@@ -314,6 +314,16 @@ var currentStep = null;
 
 function loadStep(stepNum) {
   currentStep = stepNum;
+
+  // If this step is the first step of a new level (level 01+), advance the stored level
+  for (var li = 1; li < LEVELS.length; li++) {
+    var firstNum = parseInt(LEVELS[li].steps[0].replace('step_', ''));
+    if (stepNum === firstNum) {
+      Storage.setLevel(String(li).padStart(2, '0'));
+      break;
+    }
+  }
+
   const step = STEPS_CONTENT[stepNum];
   if (!step) return;
 
