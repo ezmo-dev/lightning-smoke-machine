@@ -310,11 +310,8 @@ const STEPS_CONTENT = [
         <img src="../assets/23.webp" alt="Wallet Lightning menu" />
       </div>
       <p>Click <strong>"Use a custom node"</strong> and paste the connection string:</p>
-      <pre><code>type=blink;
-server=https://api.blink.sv/graphql;
-api-key=YOUR_KEY;
-wallet-id=YOUR_WALLET_ID</code></pre>
-      <p><strong>Important:</strong> do not modify the first two lines — only replace <code>api-key</code> and <code>wallet-id</code> with your values.</p>
+      <pre><code>type=blink;server=https://api.blink.sv/graphql;api-key=YOUR_KEY;wallet-id=YOUR_WALLET_ID</code></pre>
+      <p><strong>Important:</strong> do not modify <code>type=blink;server=https://api.blink.sv/graphql</code> — only replace <code>api-key</code> and <code>wallet-id</code> with your values.</p>
       <p>Click <strong>"Test connection"</strong> then <strong>"Save"</strong>.</p>
       <div class="step-img-plain">
         <img src="../assets/24.webp" alt="Custom node config" />

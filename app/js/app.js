@@ -330,8 +330,16 @@ function loadStep(stepNum) {
   // Inject content
   document.getElementById('step-content').innerHTML = step.html;
 
+  // Wrap tables for horizontal scroll on small screens
+  document.querySelectorAll('#step-content table').forEach(function (table) {
+    const wrap = document.createElement('div');
+    wrap.className = 'step-table-wrap';
+    table.parentNode.insertBefore(wrap, table);
+    wrap.appendChild(table);
+  });
+
   // Mark zoomable images
-  document.querySelectorAll('#step-content .step-img-card img').forEach(function (img) {
+  document.querySelectorAll('#step-content .step-img-card img, #step-content .step-img-plain img').forEach(function (img) {
     if (isZoomableImage(img.getAttribute('src'))) {
       img.classList.add('img-zoomable');
     }
