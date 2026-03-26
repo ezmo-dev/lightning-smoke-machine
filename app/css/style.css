@@ -1079,7 +1079,7 @@ body {
   display: flex;
   flex-direction: column;
   height: 100vh;
-  overflow: hidden;
+  overflow: clip;
   padding: 0;
   position: relative;
 }
@@ -1109,90 +1109,119 @@ body {
   100% { transform: translateY(105vh) rotate(600deg); opacity: 0; }
 }
 
-/* Top hero zone */
+/* Top hero zone
+   Per-level tuning parameters (set via JS on #levelup-hero):
+   --lu-color        : background color of the hero zone
+   --lu-hero-height  : total height of the colored zone (default 68vh)
+   --lu-mascot-top   : distance from hero top to mascot (px or %)
+   --lu-mascot-size  : mascot height (px or %)
+   --lu-mascot-x     : horizontal offset from center (px, positive = right)
+*/
 .levelup-hero {
-  --lu-color: #BCEEB6;
-  height: 56vh;
+  --lu-color:       #BCEEB6;
+  --lu-hero-height: 82vh;
+  --lu-mascot-top:  8%;
+  --lu-mascot-size: 52%;
+  --lu-mascot-x:    0px;
+  --lu-text-bottom: 16px;
+  --lu-text-x:      0px;
+
+  height: var(--lu-hero-height);
   background: var(--lu-color);
   flex-shrink: 0;
   position: relative;
-  display: flex;
-  align-items: center;
-  justify-content: center;
 }
 
 .levelup-help-btn {
   position: absolute;
   top: max(14px, env(safe-area-inset-top));
   right: 14px;
+  z-index: 2;
 }
 
 .levelup-mascot {
-  height: 78%;
+  position: absolute;
+  top: var(--lu-mascot-top);
+  left: 50%;
+  transform: translateX(calc(-50% + var(--lu-mascot-x)));
+  height: var(--lu-mascot-size);
   width: auto;
-  object-fit: contain;
-  position: relative;
+  max-width: none; /* prevent CSS reset max-width:100% from squishing the mascot */
   z-index: 1;
 }
 
-/* Gradient fade: overlaps hero bottom, bleeds into white */
-.levelup-fade {
-  flex-shrink: 0;
-  height: 72px;
-  margin-top: -72px;
-  background: linear-gradient(to bottom, transparent, white);
-  position: relative;
+/* Title + desc at the bottom of the colored zone
+   Tuning via .levelup-hero variables: --lu-text-bottom / --lu-text-x */
+.levelup-hero-text {
+  position: absolute;
+  bottom: var(--lu-text-bottom);
+  left: 0;
+  right: 0;
+  text-align: center;
+  padding: 0 var(--space-md);
+  transform: translateX(var(--lu-text-x));
   z-index: 2;
+}
+
+/* Gradient fade: inside hero, pinned to its bottom edge — above the white zone */
+.levelup-fade {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 56px;
+  background: linear-gradient(to bottom, transparent, white);
+  z-index: 3;
   pointer-events: none;
 }
 
-/* Bottom white zone */
+/* Bottom white zone: button only, anchored to screen bottom */
 .levelup-bottom {
-  flex: 1;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
   background: white;
   display: flex;
   flex-direction: column;
-  padding: 0 var(--space-md) max(32px, env(safe-area-inset-bottom));
-  min-height: 0;
-  position: relative;
+  align-items: center;
+  padding: var(--space-sm) var(--space-md) max(32px, env(safe-area-inset-bottom));
   z-index: 2;
 }
 
-.levelup-text {
-  flex: 1;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  text-align: center;
-  gap: 10px;
-  padding: 0 0 var(--space-sm);
-}
-
 .levelup-title {
-  font-size: 1.6rem;
+  font-size: 1.8rem;
   font-weight: 700;
   color: var(--color-text-primary);
-  margin: 0;
+  margin: 0 0 6px;
   letter-spacing: 0.02em;
 }
 
 .levelup-desc {
-  font-size: 0.97rem;
-  font-weight: 600;
+  font-size: 1.10rem;
+  font-weight: 700;
   color: var(--color-text-primary);
-  line-height: 1.5;
+  line-height: 1.45;
   margin: 0;
+  white-space: pre-line;
 }
 
+/* Stats: independently positioned on the screen via statsBottom param in JS */
 .levelup-stats {
-  font-size: 0.82rem;
-  font-weight: 400;
+  position: absolute;
+  bottom: 110px;  /* default, overridden by JS statsBottom */
+  left: 0;
+  right: 0;
+  padding: 0 var(--space-md);
+  font-size: 1.0rem;
+  font-weight: 700;
   font-style: italic;
   color: var(--color-text-tertiary);
   line-height: 1.55;
   margin: 0;
   white-space: pre-line;
+  text-align: center;
+  z-index: 3;
 }
 
 /* GOT IT button */

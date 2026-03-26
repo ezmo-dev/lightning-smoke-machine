@@ -111,8 +111,8 @@ document.getElementById('btn-letsgo').addEventListener('click', function () {
 
   Storage.setPseudonym(name);
   Storage.setProgress({ ...Storage.getProgress(), step_02: true });
-  showScreen('screen-map');
-  loadTutorialMap();
+  Storage.setLevel('01');
+  triggerLevelUp(1);
 });
 
 
@@ -393,14 +393,35 @@ document.getElementById('btn-mark-read').addEventListener('click', function () {
   progress[stepKey(currentStep)] = true;
   Storage.setProgress(progress);
 
-  // After step 4: show safety screen if not yet acknowledged
-  if (currentStep === 4 && !Storage.get('safety_ack')) {
-    showScreen('screen-safety');
-    loadSafetyScreen();
+  // Step 2: level up to 01, then go to map via level up screen
+  if (currentStep === 2) {
+    Storage.setLevel('01');
+    triggerLevelUp(1);
     return;
   }
 
-  // Determine next step
+  // Step 4: level up 02 first, then safety (handled inside level up next())
+  if (currentStep === 4) {
+    Storage.setLevel('02');
+    triggerLevelUp(2);
+    return;
+  }
+
+  // Step 7: level up to 03
+  if (currentStep === 7) {
+    Storage.setLevel('03');
+    triggerLevelUp(3);
+    return;
+  }
+
+  // Step 12: level up to 04
+  if (currentStep === 12) {
+    Storage.setLevel('04');
+    triggerLevelUp(4);
+    return;
+  }
+
+  // Normal next step
   const next = getNextStep();
   if (next) {
     loadStep(next);
@@ -499,11 +520,8 @@ document.getElementById('btn-safety-continue').addEventListener('click', functio
     return;
   }
 
-  // Save acknowledgment and proceed to step 5
   Storage.set('safety_ack', '1');
-  // Remove scroll listener to avoid memory leak
   document.getElementById('safety-scroll').removeEventListener('scroll', onSafetyScroll);
-  // Navigate to screen-step and load step 5
   showScreen('screen-step');
   loadStep(5);
 });
@@ -516,6 +534,160 @@ document.getElementById('btn-safety-back').addEventListener('click', function ()
 
 
 /* ------------------- */
+/* Screen 5 - Level Up */
+
+const LEVEL_UP_CONTENT = {
+  1: {
+    color:       '#BCEEB6',
+    mascot:      'img/mascot/level-01.png',
+    title:       'LEVEL 01',
+    desc:        'Inspector look activated!\nNo more crawling around, we\'re switching to investigation mode.',
+    stats:       '"Curiosity" module installed\nCold resistance +15\n(thanks to the beanie).',
+    heroHeight:  '75vh',   /* <- total colored zone height */
+    mascotTop:   '-2%',    /* <- distance from top of hero to mascot */
+    mascotSize:  '85%',   /* <- mascot height relative to hero */
+    mascotX:     '0px',   /* <- horizontal offset from center */
+    textBottom:  '55px',  /* <- distance from hero bottom to text block */
+    textX:       '0px',   /* <- horizontal offset of text block from center */
+    statsBottom: '135px',   /* <- margin-top on stats text in white zone */
+    next:        function () { showScreen('screen-map'); loadTutorialMap(); }
+  },
+  2: {
+    color:       '#ADE4FF',
+    mascot:      'img/mascot/level-02.png',
+    title:       'LEVEL 02',
+    desc:        'Say goodbye to the magnifying glass and hello to the wrench.\nLet\'s tear everything apart!',
+    stats:       'Heat shielding active: +100%\nSpark resistance.',
+    heroHeight:  '74vh',
+    mascotTop:   '3%',
+    mascotSize:  '80%',
+    mascotX:     '-13px',
+    textBottom:  '55px',
+    textX:       '0px',
+    statsBottom: '145px',
+    next:        function () {
+      if (!Storage.get('safety_ack')) {
+        showScreen('screen-safety');
+        loadSafetyScreen();
+      } else {
+        showScreen('screen-step');
+        loadStep(5);
+      }
+    }
+  },
+  3: {
+    color:       '#E0BFDE',
+    mascot:      'img/mascot/level-03.png',
+    title:       'LEVEL 03',
+    desc:        'You\'re starting to look like a real garage hacker: 80% metal, 20% caffeine, and 100% class.',
+    stats:       'Cypherpunk Evolution active:\nSSH (Super Stylish Hacker)\nProtocol: Brain latency 0ms.',
+    heroHeight:  '75vh',
+    mascotTop:   '1%',
+    mascotSize:  '80%',
+    mascotX:     '0px',
+    textBottom:  '55px',
+    textX:       '0px',
+    statsBottom: '135px',
+    next:        function () { showScreen('screen-step'); loadStep(8); }
+  },
+  4: {
+    color:       '#FFCC77',
+    mascot:      'img/mascot/level-04.png',
+    title:       'LEVEL 04',
+    desc:        'You are the Final Boss: with a bit of code, a caterpillar can conquer the universe!',
+    stats:       'Check out those antennas!\nLightning Network connection:\nSignal Strength MAX.',
+    heroHeight:  '75vh',
+    mascotTop:   '-1%',
+    mascotSize:  '85%',
+    mascotX:     '0px',
+    textBottom:  '55px',
+    textX:       '0px',
+    statsBottom: '135px',
+    next:        function () { showScreen('screen-step'); loadStep(13); }
+  }
+};
+
+var currentLevelUp = 1;
+
+/* Show level-up screen only if not already seen; otherwise skip to next() directly */
+function triggerLevelUp(levelNum) {
+  if (Storage.get('levelup_' + levelNum + '_seen')) {
+    LEVEL_UP_CONTENT[levelNum].next();
+  } else {
+    showScreen('screen-levelup');
+    loadLevelUp(levelNum);
+  }
+}
+
+function loadLevelUp(levelNum) {
+  currentLevelUp = levelNum;
+  const data = LEVEL_UP_CONTENT[levelNum];
+
+  // Apply hero color + positioning parameters
+  const hero = document.getElementById('levelup-hero');
+  hero.style.setProperty('--lu-color',       data.color);
+  hero.style.setProperty('--lu-hero-height', data.heroHeight);
+  hero.style.setProperty('--lu-mascot-top',  data.mascotTop);
+  hero.style.setProperty('--lu-mascot-size', data.mascotSize);
+  hero.style.setProperty('--lu-mascot-x',    data.mascotX);
+  hero.style.setProperty('--lu-text-bottom', data.textBottom);
+  hero.style.setProperty('--lu-text-x',      data.textX);
+  hero.style.background = data.color;
+
+  // Gradient fade matches level color
+  document.getElementById('levelup-fade').style.background =
+    'linear-gradient(to bottom, ' + data.color + ', white)';
+
+  document.getElementById('levelup-mascot').src = data.mascot;
+  document.getElementById('levelup-title').textContent = data.title;
+  document.getElementById('levelup-desc').textContent  = data.desc;
+
+  const statsEl = document.getElementById('levelup-stats');
+  statsEl.textContent = data.stats;
+  statsEl.style.bottom = data.statsBottom;
+
+  spawnConfetti(data.color);
+}
+
+function spawnConfetti(levelColor) {
+  const container = document.getElementById('levelup-confetti');
+  container.innerHTML = '';
+
+  const colors = [levelColor, '#F9A836', '#ffffff', '#FF6B6B', '#FFD93D', '#6BCB77', '#4D96FF'];
+  const count  = 60;
+
+  for (var i = 0; i < count; i++) {
+    const el    = document.createElement('div');
+    el.className = 'levelup-confetti-piece';
+
+    // Random properties
+    const size     = 6 + Math.random() * 8;
+    const left     = Math.random() * 100;
+    const delay    = Math.random() * 0.8;
+    const duration = 1.8 + Math.random() * 1.2;
+    const color    = colors[Math.floor(Math.random() * colors.length)];
+    const round    = Math.random() > 0.5 ? '50%' : '2px';
+
+    el.style.cssText =
+      'width:' + size + 'px;' +
+      'height:' + size + 'px;' +
+      'left:' + left + '%;' +
+      'background:' + color + ';' +
+      'border-radius:' + round + ';' +
+      'animation-duration:' + duration + 's;' +
+      'animation-delay:' + delay + 's;';
+
+    container.appendChild(el);
+  }
+}
+
+document.getElementById('btn-levelup-gotit').addEventListener('click', function () {
+  document.getElementById('levelup-confetti').innerHTML = '';
+  Storage.set('levelup_' + currentLevelUp + '_seen', true);
+  LEVEL_UP_CONTENT[currentLevelUp].next();
+});
+
+
 /* Lightbox */
 
 function isZoomableImage(src) {

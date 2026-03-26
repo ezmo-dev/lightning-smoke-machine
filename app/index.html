@@ -266,7 +266,7 @@
       <!-- Confetti container (populated by JS) -->
       <div id="levelup-confetti" class="levelup-confetti" aria-hidden="true"></div>
 
-      <!-- Top zone: solid level color + mascot -->
+      <!-- Top zone: solid level color + mascot + title + desc + fade -->
       <div class="levelup-hero" id="levelup-hero">
         <button class="wb-icon-btn levelup-help-btn" aria-label="Help">
           <svg width="28" height="28" viewBox="0 0 28 28" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -275,18 +275,20 @@
           </svg>
         </button>
         <img id="levelup-mascot" class="levelup-mascot" src="" alt="" />
-      </div>
-
-      <!-- Gradient fade from level color to white -->
-      <div class="levelup-fade" id="levelup-fade"></div>
-
-      <!-- Bottom zone: white, content -->
-      <div class="levelup-bottom">
-        <div class="levelup-text">
+        <!-- Title and description live inside the colored zone -->
+        <div class="levelup-hero-text">
           <p id="levelup-title" class="levelup-title">LEVEL 01</p>
           <p id="levelup-desc" class="levelup-desc"></p>
-          <p id="levelup-stats" class="levelup-stats"></p>
         </div>
+        <!-- Fade sits inside hero, anchored to hero bottom -->
+        <div class="levelup-fade" id="levelup-fade"></div>
+      </div>
+
+      <!-- Stats: independently positioned, tunable via statsBottom in JS -->
+      <p id="levelup-stats" class="levelup-stats"></p>
+
+      <!-- Bottom zone: button only, always anchored to screen bottom -->
+      <div class="levelup-bottom">
         <button id="btn-levelup-gotit" class="btn-levelup-gotit">GOT IT!</button>
       </div>
 
