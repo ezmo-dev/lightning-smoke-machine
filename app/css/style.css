@@ -1150,17 +1150,16 @@ body {
   z-index: 1;
 }
 
-/* Title + desc at the bottom of the colored zone
-   Tuning via .levelup-hero variables: --lu-text-bottom / --lu-text-x */
+/* Title: independently positioned on screen, bottom = from screen bottom
+   Tunable via textBottom / textX in JS — fully independent of heroHeight */
 .levelup-hero-text {
   position: absolute;
-  bottom: var(--lu-text-bottom);
+  bottom: 300px; /* default, overridden by JS textBottom */
   left: 0;
   right: 0;
   text-align: center;
   padding: 0 var(--space-md);
-  transform: translateX(var(--lu-text-x));
-  z-index: 2;
+  z-index: 4;
 }
 
 /* Gradient fade: inside hero, pinned to its bottom edge — above the white zone */
@@ -1169,7 +1168,7 @@ body {
   bottom: 0;
   left: 0;
   right: 0;
-  height: 56px;
+  height: 35px;
   background: linear-gradient(to bottom, transparent, white);
   z-index: 3;
   pointer-events: none;
@@ -1190,20 +1189,29 @@ body {
 }
 
 .levelup-title {
-  font-size: 1.8rem;
+  font-size: 2.2rem;
   font-weight: 700;
   color: var(--color-text-primary);
   margin: 0 0 6px;
   letter-spacing: 0.02em;
+  paint-order: stroke fill; /* stroke drawn behind fill so textColor stays visible */
 }
 
+/* Desc: independently positioned in white zone, tunable via descBottom in JS */
 .levelup-desc {
+  position: absolute;
+  bottom: 185px; /* default, overridden by JS descBottom */
+  left: 0;
+  right: 0;
+  padding: 0 var(--space-md);
   font-size: 1.10rem;
   font-weight: 700;
   color: var(--color-text-primary);
   line-height: 1.45;
   margin: 0;
   white-space: pre-line;
+  text-align: center;
+  z-index: 3;
 }
 
 /* Stats: independently positioned on the screen via statsBottom param in JS */
@@ -1214,7 +1222,7 @@ body {
   right: 0;
   padding: 0 var(--space-md);
   font-size: 1.0rem;
-  font-weight: 700;
+  font-weight: 600;
   font-style: italic;
   color: var(--color-text-tertiary);
   line-height: 1.55;

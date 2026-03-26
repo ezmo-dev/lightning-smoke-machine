@@ -275,14 +275,17 @@
           </svg>
         </button>
         <img id="levelup-mascot" class="levelup-mascot" src="" alt="" />
-        <!-- Title and description live inside the colored zone -->
-        <div class="levelup-hero-text">
-          <p id="levelup-title" class="levelup-title">LEVEL 01</p>
-          <p id="levelup-desc" class="levelup-desc"></p>
-        </div>
         <!-- Fade sits inside hero, anchored to hero bottom -->
         <div class="levelup-fade" id="levelup-fade"></div>
       </div>
+
+      <!-- Title: independently positioned, tunable via textBottom in JS (from screen bottom) -->
+      <div class="levelup-hero-text" id="levelup-hero-text">
+        <p id="levelup-title" class="levelup-title">LEVEL 01</p>
+      </div>
+
+      <!-- Desc: independently positioned in white zone, tunable via descBottom in JS -->
+      <p id="levelup-desc" class="levelup-desc"></p>
 
       <!-- Stats: independently positioned, tunable via statsBottom in JS -->
       <p id="levelup-stats" class="levelup-stats"></p>

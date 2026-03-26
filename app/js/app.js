@@ -543,13 +543,17 @@ const LEVEL_UP_CONTENT = {
     title:       'LEVEL 01',
     desc:        'Inspector look activated!\nNo more crawling around, we\'re switching to investigation mode.',
     stats:       '"Curiosity" module installed\nCold resistance +15\n(thanks to the beanie).',
-    heroHeight:  '75vh',   /* <- total colored zone height */
-    mascotTop:   '-2%',    /* <- distance from top of hero to mascot */
-    mascotSize:  '85%',   /* <- mascot height relative to hero */
+    heroHeight:  '60vh',   /* <- total colored zone height */
+    mascotTop:   '-3%',    /* <- distance from top of hero to mascot */
+    mascotSize:  '104%',   /* <- mascot height relative to hero */
     mascotX:     '0px',   /* <- horizontal offset from center */
-    textBottom:  '55px',  /* <- distance from hero bottom to text block */
+    textBottom:  '355px',  /* <- distance from screen bottom to title block */
     textX:       '0px',   /* <- horizontal offset of text block from center */
-    statsBottom: '135px',   /* <- margin-top on stats text in white zone */
+    textColor:   '#F9A836',
+    textStroke:  '2px #62605C',    /* <- stroke outline e.g. '2px #ffffff' or 'none' */
+    descColor:   '#62605C',
+    descBottom:  '235px',
+    statsBottom: '145px',
     next:        function () { showScreen('screen-map'); loadTutorialMap(); }
   },
   2: {
@@ -558,13 +562,17 @@ const LEVEL_UP_CONTENT = {
     title:       'LEVEL 02',
     desc:        'Say goodbye to the magnifying glass and hello to the wrench.\nLet\'s tear everything apart!',
     stats:       'Heat shielding active: +100%\nSpark resistance.',
-    heroHeight:  '74vh',
-    mascotTop:   '3%',
-    mascotSize:  '80%',
+    heroHeight:  '60vh',
+    mascotTop:   '0%',
+    mascotSize:  '100%',
     mascotX:     '-13px',
-    textBottom:  '55px',
+    textBottom:  '355px',  /* <- distance from screen bottom to title block */
     textX:       '0px',
-    statsBottom: '145px',
+    textColor:   '#F9A836',
+    textStroke:  '2px #62605C',
+    descColor:   '#62605C',
+    descBottom:  '220px',
+    statsBottom: '150px',
     next:        function () {
       if (!Storage.get('safety_ack')) {
         showScreen('screen-safety');
@@ -579,15 +587,19 @@ const LEVEL_UP_CONTENT = {
     color:       '#E0BFDE',
     mascot:      'img/mascot/level-03.png',
     title:       'LEVEL 03',
-    desc:        'You\'re starting to look like a real garage hacker: 80% metal, 20% caffeine, and 100% class.',
+    desc:        'You\'re starting to look like a real\ngarage hacker: 80% metal,\n20% caffeine, and 100% class.',
     stats:       'Cypherpunk Evolution active:\nSSH (Super Stylish Hacker)\nProtocol: Brain latency 0ms.',
-    heroHeight:  '75vh',
-    mascotTop:   '1%',
-    mascotSize:  '80%',
+    heroHeight:  '60vh',
+    mascotTop:   '-1%',
+    mascotSize:  '97%',
     mascotX:     '0px',
-    textBottom:  '55px',
+    textBottom:  '365px',  /* <- distance from screen bottom to title block */
     textX:       '0px',
-    statsBottom: '135px',
+    textColor:   '#F9A836',
+    textStroke:  '2px #62605C',
+    descColor:   '#62605C',
+    descBottom:  '240px',
+    statsBottom: '150px',
     next:        function () { showScreen('screen-step'); loadStep(8); }
   },
   4: {
@@ -596,13 +608,17 @@ const LEVEL_UP_CONTENT = {
     title:       'LEVEL 04',
     desc:        'You are the Final Boss: with a bit of code, a caterpillar can conquer the universe!',
     stats:       'Check out those antennas!\nLightning Network connection:\nSignal Strength MAX.',
-    heroHeight:  '75vh',
-    mascotTop:   '-1%',
-    mascotSize:  '85%',
+    heroHeight:  '62vh',
+    mascotTop:   '-6%',
+    mascotSize:  '100%',
     mascotX:     '0px',
-    textBottom:  '55px',
+    textBottom:  '355px',  /* <- distance from screen bottom to title block */
     textX:       '0px',
-    statsBottom: '135px',
+    textColor:   '#F9A836',
+    textStroke:  '2px #62605C',
+    descColor:   '#62605C',
+    descBottom:  '240px',
+    statsBottom: '150px',
     next:        function () { showScreen('screen-step'); loadStep(13); }
   }
 };
@@ -630,17 +646,28 @@ function loadLevelUp(levelNum) {
   hero.style.setProperty('--lu-mascot-top',  data.mascotTop);
   hero.style.setProperty('--lu-mascot-size', data.mascotSize);
   hero.style.setProperty('--lu-mascot-x',    data.mascotX);
-  hero.style.setProperty('--lu-text-bottom', data.textBottom);
-  hero.style.setProperty('--lu-text-x',      data.textX);
   hero.style.background = data.color;
+
+  // Title block: positioned from screen bottom, independent of heroHeight
+  const heroText = document.getElementById('levelup-hero-text');
+  heroText.style.bottom    = data.textBottom;
+  heroText.style.transform = 'translateX(' + data.textX + ')';
 
   // Gradient fade matches level color
   document.getElementById('levelup-fade').style.background =
     'linear-gradient(to bottom, ' + data.color + ', white)';
 
   document.getElementById('levelup-mascot').src = data.mascot;
-  document.getElementById('levelup-title').textContent = data.title;
-  document.getElementById('levelup-desc').textContent  = data.desc;
+
+  const titleEl = document.getElementById('levelup-title');
+  titleEl.textContent  = data.title;
+  titleEl.style.color  = data.textColor;
+  titleEl.style.webkitTextStroke = data.textStroke;
+
+  const descEl = document.getElementById('levelup-desc');
+  descEl.textContent   = data.desc;
+  descEl.style.color   = data.descColor;
+  descEl.style.bottom  = data.descBottom;
 
   const statsEl = document.getElementById('levelup-stats');
   statsEl.textContent = data.stats;
