@@ -1073,6 +1073,161 @@ body {
 
 
 /* ------------------- */
+/* Screen 5 - Level Up */
+
+#screen-levelup.active {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  overflow: hidden;
+  padding: 0;
+  position: relative;
+}
+
+/* Confetti layer: covers whole screen, no pointer events */
+.levelup-confetti {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  z-index: 20;
+  overflow: hidden;
+}
+
+.levelup-confetti-piece {
+  position: absolute;
+  top: -20px;
+  width: 10px;
+  height: 10px;
+  border-radius: 2px;
+  opacity: 0;
+  animation: confettiFall linear forwards;
+}
+
+@keyframes confettiFall {
+  0%   { transform: translateY(0) rotate(0deg);    opacity: 1; }
+  80%  { opacity: 1; }
+  100% { transform: translateY(105vh) rotate(600deg); opacity: 0; }
+}
+
+/* Top hero zone */
+.levelup-hero {
+  --lu-color: #BCEEB6;
+  height: 56vh;
+  background: var(--lu-color);
+  flex-shrink: 0;
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.levelup-help-btn {
+  position: absolute;
+  top: max(14px, env(safe-area-inset-top));
+  right: 14px;
+}
+
+.levelup-mascot {
+  height: 78%;
+  width: auto;
+  object-fit: contain;
+  position: relative;
+  z-index: 1;
+}
+
+/* Gradient fade: overlaps hero bottom, bleeds into white */
+.levelup-fade {
+  flex-shrink: 0;
+  height: 72px;
+  margin-top: -72px;
+  background: linear-gradient(to bottom, transparent, white);
+  position: relative;
+  z-index: 2;
+  pointer-events: none;
+}
+
+/* Bottom white zone */
+.levelup-bottom {
+  flex: 1;
+  background: white;
+  display: flex;
+  flex-direction: column;
+  padding: 0 var(--space-md) max(32px, env(safe-area-inset-bottom));
+  min-height: 0;
+  position: relative;
+  z-index: 2;
+}
+
+.levelup-text {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  gap: 10px;
+  padding: 0 0 var(--space-sm);
+}
+
+.levelup-title {
+  font-size: 1.6rem;
+  font-weight: 700;
+  color: var(--color-text-primary);
+  margin: 0;
+  letter-spacing: 0.02em;
+}
+
+.levelup-desc {
+  font-size: 0.97rem;
+  font-weight: 600;
+  color: var(--color-text-primary);
+  line-height: 1.5;
+  margin: 0;
+}
+
+.levelup-stats {
+  font-size: 0.82rem;
+  font-weight: 400;
+  font-style: italic;
+  color: var(--color-text-tertiary);
+  line-height: 1.55;
+  margin: 0;
+  white-space: pre-line;
+}
+
+/* GOT IT button */
+.btn-levelup-gotit {
+  width: 100%;
+  min-height: 56px;
+  font-family: 'Quicksand', sans-serif;
+  font-weight: 700;
+  font-size: 1.1rem;
+  background: var(--color-action);
+  color: white;
+  border-radius: var(--radius-pill);
+  border: none;
+  cursor: pointer;
+  flex-shrink: 0;
+  transition: opacity 0.15s ease, transform 0.1s ease;
+}
+
+.btn-levelup-gotit:active {
+  opacity: 0.85;
+  transform: scale(0.98);
+}
+
+/* Small screens: compress hero height and text */
+@media (max-height: 700px) {
+  .levelup-hero   { height: 48vh; }
+  .levelup-fade   { height: 56px; margin-top: -56px; }
+  .levelup-title  { font-size: 1.35rem; }
+  .levelup-desc   { font-size: 0.88rem; }
+  .levelup-stats  { font-size: 0.76rem; }
+  .levelup-text   { gap: 7px; }
+  .btn-levelup-gotit { min-height: 50px; font-size: 1rem; }
+}
+
+/* ------------------- */
 /* Screen 4a - Safety Warning */
 
 #screen-safety.active {
