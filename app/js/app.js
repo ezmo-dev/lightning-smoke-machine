@@ -190,11 +190,11 @@ document.getElementById('btn-wb-help').addEventListener('click', function () {
 
 // Each level: which steps it owns, its bar color, and the mascot card displays
 const LEVELS = [
-  { name: 'Welcome',      steps: ['step_01', 'step_02'],                                        color: '#F9A836', mascot: 'img/mascot/level-00.png', lastStep: 2  },
-  { name: 'Introduction', steps: ['step_03', 'step_04'],                                        color: '#BCEEB6', mascot: 'img/mascot/level-01.png', lastStep: 4  },
-  { name: 'Hardware',     steps: ['step_05', 'step_06', 'step_07'],                             color: '#ADE4FF', mascot: 'img/mascot/level-02.png', lastStep: 7  },
-  { name: 'Software',     steps: ['step_08', 'step_09', 'step_10', 'step_11', 'step_12'],      color: '#E0BFDE', mascot: 'img/mascot/level-03.png', lastStep: 12 },
-  { name: 'Launch',       steps: ['step_13', 'step_14', 'step_15', 'step_16'],                  color: '#FFCC77', mascot: 'img/mascot/level-04.png', lastStep: 16 },
+  { name: 'Welcome', steps: ['step_01', 'step_02'], color: '#F9A836', mascot: 'img/mascot/level-00.png', lastStep: 2  },
+  { name: 'Introduction', steps: ['step_03', 'step_04'], color: '#BCEEB6', mascot: 'img/mascot/level-01.png', lastStep: 4  },
+  { name: 'Hardware', steps: ['step_05', 'step_06', 'step_07'], color: '#ADE4FF', mascot: 'img/mascot/level-02.png', lastStep: 7  },
+  { name: 'Software', steps: ['step_08', 'step_09', 'step_10', 'step_11', 'step_12'], color: '#E0BFDE', mascot: 'img/mascot/level-03.png', lastStep: 12 },
+  { name: 'Launch', steps: ['step_13', 'step_14', 'step_15', 'step_16'], color: '#FFCC77', mascot: 'img/mascot/level-04.png', lastStep: 16 },
 ];
 
 function loadTutorialMap() {
@@ -532,6 +532,10 @@ document.getElementById('btn-safety-back').addEventListener('click', function ()
   loadTutorialMap();
 });
 
+document.getElementById('btn-safety-help').addEventListener('click', function () {
+  showScreen('screen-help');
+});
+
 
 /* ------------------- */
 /* Screen 5 - Level Up */
@@ -708,6 +712,10 @@ function spawnConfetti(levelColor) {
   }
 }
 
+document.querySelector('.levelup-help-btn').addEventListener('click', function () {
+  showScreen('screen-help');
+});
+
 document.getElementById('btn-levelup-gotit').addEventListener('click', function () {
   document.getElementById('levelup-confetti').innerHTML = '';
   Storage.set('levelup_' + currentLevelUp + '_seen', true);
@@ -795,6 +803,106 @@ document.getElementById('step-content').addEventListener('click', function (e) {
   if (img && isZoomableImage(img.getAttribute('src'))) {
     openLightbox(img.src);
   }
+});
+
+
+/* ------------------- */
+/* Screen 6 - Help Center */
+
+document.getElementById('btn-help-back').addEventListener('click', function () {
+  goBack();
+});
+
+// Accordion: one card open at a time across FAQ + Dictionary
+var openCard = null;
+
+function closeCard(card) {
+  card.classList.remove('open');
+}
+
+function openCardEl(card) {
+  if (openCard && openCard !== card) {
+    closeCard(openCard);
+  }
+  card.classList.add('open');
+  openCard = card;
+}
+
+function toggleCard(card) {
+  if (card.classList.contains('open')) {
+    closeCard(card);
+    openCard = null;
+  } else {
+    openCardEl(card);
+  }
+}
+
+document.querySelectorAll('.help-card').forEach(function (card) {
+  card.addEventListener('click', function () {
+    toggleCard(card);
+  });
+});
+
+// Show more / Show less
+function initShowMore(listId, btnId) {
+  var btn = document.getElementById(btnId);
+  var expanded = false;
+
+  btn.addEventListener('click', function () {
+    expanded = !expanded;
+    var extras = document.querySelectorAll('#' + listId + ' .help-card--extra');
+    extras.forEach(function (el) {
+      if (expanded) {
+        el.classList.add('expanded-visible');
+      } else {
+        // Close any open card inside this list before hiding
+        if (el.classList.contains('open')) {
+          closeCard(el);
+          openCard = null;
+        }
+        el.classList.remove('expanded-visible');
+      }
+    });
+    btn.textContent = expanded ? 'Show less' : 'Show more';
+    btn.setAttribute('aria-expanded', expanded);
+  });
+}
+
+initShowMore('faq-list', 'faq-show-more');
+initShowMore('dict-list', 'dict-show-more');
+
+// Contact form
+// TODO: Replace mailto with Formspree or custom backend if needed
+document.getElementById('btn-help-send').addEventListener('click', function () {
+  var textarea = document.getElementById('help-textarea');
+  var msg = textarea.value.trim();
+
+  if (!msg) {
+    textarea.classList.remove('shake');
+    void textarea.offsetWidth;
+    textarea.classList.add('shake');
+    textarea.addEventListener('animationend', function () {
+      textarea.classList.remove('shake');
+    }, { once: true });
+    return;
+  }
+
+  var subject = encodeURIComponent('Lightning Smoke Machine \u2014 Help Center Message');
+  var body    = encodeURIComponent(msg);
+  window.location.href = 'mailto:tutorial.washtub325@passinbox.com?subject=' + subject + '&body=' + body;
+
+  // Show confirmation
+  document.getElementById('help-form-wrap').style.display = 'none';
+  var confirm = document.getElementById('help-confirm');
+  confirm.removeAttribute('aria-hidden');
+  confirm.classList.add('visible');
+
+  setTimeout(function () {
+    textarea.value = '';
+    confirm.classList.remove('visible');
+    confirm.setAttribute('aria-hidden', 'true');
+    document.getElementById('help-form-wrap').style.display = '';
+  }, 3000);
 });
 
 
