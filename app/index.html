@@ -301,7 +301,216 @@
     <!-- ------------------- -->
     <!-- Screen 6: Help Center -->
     <div id="screen-help" class="screen">
-      <h2>Help Center</h2>
+
+      <!-- Top bar -->
+      <div class="help-topbar">
+        <button id="btn-help-back" class="step-back-btn" aria-label="Back">
+          <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M12.5 15L7.5 10L12.5 5" stroke="#191817" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+          Back
+        </button>
+        <button class="wb-icon-btn" aria-label="Profile">
+          <svg width="28" height="28" viewBox="0 0 28 28" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <circle cx="14" cy="9" r="5" stroke="#191817" stroke-width="2"/>
+            <path d="M4 24c0-5.523 4.477-10 10-10s10 4.477 10 10" stroke="#191817" stroke-width="2" stroke-linecap="round"/>
+          </svg>
+        </button>
+      </div>
+
+      <!-- Scrollable body -->
+      <div class="help-scroll">
+
+        <h1 class="help-title">Help center</h1>
+
+        <!-- Section 1: Need help? -->
+        <section class="help-section help-contact-section">
+          <h2 class="help-section-title">Needs help?</h2>
+          <p class="help-section-subtitle">Want to ask a question or give feedback?</p>
+
+          <!-- Contact form -->
+          <div id="help-form-wrap">
+            <textarea
+              id="help-textarea"
+              class="help-textarea"
+              placeholder="Type your message here..."
+              rows="4"
+            ></textarea>
+            <button id="btn-help-send" class="help-send-btn">Send</button>
+          </div>
+
+          <!-- Confirmation (hidden by default) -->
+          <div id="help-confirm" class="help-confirm" aria-hidden="true">
+            <span class="help-confirm-icon">&#10003;</span>
+            <span>Thanks for your message!</span>
+          </div>
+        </section>
+
+        <!-- Section 2: FAQ -->
+        <section class="help-section">
+          <h2 class="help-section-title">FAQ</h2>
+
+          <div id="faq-list" class="help-card-list">
+
+            <div class="help-card" data-group="accordion">
+              <div class="help-card-question">How much does it cost to build?</div>
+              <div class="help-card-answer">Around 50 to 70 euros for all components, depending on where you buy them and whether you already own some parts. The smoke machine itself is the most expensive item. Check the shopping list in Step 3 for exact prices and links.</div>
+            </div>
+
+            <div class="help-card" data-group="accordion">
+              <div class="help-card-question">Do I need any coding experience?</div>
+              <div class="help-card-answer">No. You will not write any code. The firmware is already built (BitcoinSwitch). You just need to flash it onto the ESP32 and configure a few settings through a web interface. Everything is explained step by step.</div>
+            </div>
+
+            <div class="help-card" data-group="accordion">
+              <div class="help-card-question">Where can I buy the components?</div>
+              <div class="help-card-answer">We provide Amazon FR links in the shopping list (Step 3). If you are outside France, search the component name on your local Amazon or any electronics store. All components are common and easy to find worldwide.</div>
+            </div>
+
+            <div class="help-card help-card--extra" data-group="accordion">
+              <div class="help-card-question">Can I use a different ESP32 board?</div>
+              <div class="help-card-answer">Yes, any ESP32-WROOM-32 development board with a USB port will work. The pin layout may differ slightly. Make sure it has GPIO pins 21 and 22 available. Avoid ESP32-S2 or ESP32-C3 variants as they are not compatible with BitcoinSwitch.</div>
+            </div>
+
+            <div class="help-card help-card--extra" data-group="accordion">
+              <div class="help-card-question">My power bank keeps turning off, what do I do?</div>
+              <div class="help-card-answer">Most power banks auto-shutoff when the connected device draws very low current. The ESP32 sometimes falls below that threshold. Try keeping a second device (like a phone) plugged into the power bank at the same time. Or use a different power bank. For short demos this is rarely a problem.</div>
+            </div>
+
+            <div class="help-card help-card--extra" data-group="accordion">
+              <div class="help-card-question">Can I use a 110V smoke machine instead of 220V?</div>
+              <div class="help-card-answer">Yes. The relay module works the same way regardless of voltage. The wiring is identical. Just make sure your smoke machine matches your country's outlet voltage. Never mix 110V and 220V.</div>
+            </div>
+
+            <div class="help-card help-card--extra" data-group="accordion">
+              <div class="help-card-question">Do I need my own BTCPay Server?</div>
+              <div class="help-card-answer">No. This tutorial uses the public demo server at bitcoinswitch.lnbits.com. You do not need to install or host anything. If you already run your own BTCPay Server, you can use it instead.</div>
+            </div>
+
+            <div class="help-card help-card--extra" data-group="accordion">
+              <div class="help-card-question">How is my progress saved?</div>
+              <div class="help-card-answer">Your progress is saved locally in your browser using localStorage. Nothing is sent to any server. This means your progress is tied to this specific browser on this specific device.</div>
+            </div>
+
+            <div class="help-card help-card--extra" data-group="accordion">
+              <div class="help-card-question">I lost my progress, can I recover it?</div>
+              <div class="help-card-answer">Unfortunately no. Since progress is stored only in your browser, clearing your browser data, switching browsers, or using a different device will reset your progress. This is why we recommend always using the same browser.</div>
+            </div>
+
+            <div class="help-card help-card--extra" data-group="accordion">
+              <div class="help-card-question">Will the tutorial be available in other languages?</div>
+              <div class="help-card-answer">Yes. French and English are planned. French will be added soon. If you want to help translate the tutorial into another language, contact us.</div>
+            </div>
+
+            <div class="help-card help-card--extra" data-group="accordion">
+              <div class="help-card-question">My ESP32 won't connect to WiFi</div>
+              <div class="help-card-answer">Make sure you are connecting to a 2.4 GHz network. The ESP32 does not support 5 GHz WiFi. Double check your WiFi password (no extra spaces). Try moving the ESP32 closer to your router. Restart the ESP32 by unplugging and replugging the USB cable.</div>
+            </div>
+
+            <div class="help-card help-card--extra" data-group="accordion">
+              <div class="help-card-question">The smoke machine doesn't trigger after payment</div>
+              <div class="help-card-answer">Check these in order: Is the relay wired correctly? Is the ESP32 connected to WiFi (check the serial monitor)? Is the WebSocket URL correct in the BitcoinSwitch config? Did the Lightning payment actually succeed (check your BTCPay dashboard)? Try pressing the relay manually to confirm it clicks.</div>
+            </div>
+
+            <div class="help-card help-card--extra" data-group="accordion">
+              <div class="help-card-question">The QR code doesn't appear on my Point of Sale</div>
+              <div class="help-card-answer">Make sure your Point of Sale is correctly configured in BTCPay Server. Check that you selected the right wallet (Blink via Lightning). Try refreshing the page. If using a phone, make sure you are connected to the internet.</div>
+            </div>
+
+            <div class="help-card help-card--extra" data-group="accordion">
+              <div class="help-card-question">My relay clicks but the smoke machine doesn't start</div>
+              <div class="help-card-answer">The relay is working but the smoke machine is not receiving power. Check that the smoke machine is plugged into the mains. Check that the relay is wired to the correct terminals (COM and NO, not NC). Make sure the smoke machine is warmed up (most fog machines need 3 to 5 minutes to heat up before they can produce smoke).</div>
+            </div>
+
+          </div>
+
+          <button class="help-show-more" id="faq-show-more" aria-expanded="false">Show more</button>
+        </section>
+
+        <!-- Section 3: Word dictionary -->
+        <section class="help-section">
+          <h2 class="help-section-title">Word dictionary</h2>
+
+          <div id="dict-list" class="help-card-list">
+
+            <div class="help-card" data-group="accordion">
+              <div class="help-card-question">BTCPay Server</div>
+              <div class="help-card-answer">A free, open-source payment processor for Bitcoin and Lightning. It lets you accept payments without any third party or fees.</div>
+            </div>
+
+            <div class="help-card" data-group="accordion">
+              <div class="help-card-question">Lightning Network</div>
+              <div class="help-card-answer">A second layer built on top of Bitcoin that enables instant, low-cost payments. Instead of waiting for a blockchain confirmation, payments settle in seconds.</div>
+            </div>
+
+            <div class="help-card" data-group="accordion">
+              <div class="help-card-question">Lightning wallet</div>
+              <div class="help-card-answer">A wallet that can send and receive payments on the Lightning Network. Examples: Blink, Phoenix, Wallet of Satoshi.</div>
+            </div>
+
+            <div class="help-card help-card--extra" data-group="accordion">
+              <div class="help-card-question">Blink</div>
+              <div class="help-card-answer">A Lightning wallet with a simple API. In this project, Blink connects to BTCPay Server to process payments. You create a free account at blink.sv.</div>
+            </div>
+
+            <div class="help-card help-card--extra" data-group="accordion">
+              <div class="help-card-question">BitcoinSwitch</div>
+              <div class="help-card-answer">An open-source firmware for ESP32 that listens for Lightning payments and triggers a physical action (like turning on a relay). It connects to BTCPay Server via WebSocket.</div>
+            </div>
+
+            <div class="help-card help-card--extra" data-group="accordion">
+              <div class="help-card-question">ESP32</div>
+              <div class="help-card-answer">A low-cost microcontroller with built-in WiFi and Bluetooth. It is the brain of your smoke machine setup. You program it by flashing firmware via USB.</div>
+            </div>
+
+            <div class="help-card help-card--extra" data-group="accordion">
+              <div class="help-card-question">Relay module</div>
+              <div class="help-card-answer">An electrically operated switch. It lets a small 5V signal from the ESP32 control a high-voltage device (like a 220V smoke machine) safely. Think of it as a bridge between low-power electronics and high-power appliances.</div>
+            </div>
+
+            <div class="help-card help-card--extra" data-group="accordion">
+              <div class="help-card-question">WebSocket</div>
+              <div class="help-card-answer">A communication protocol that keeps a live, two-way connection between two devices. In this project, the ESP32 uses a WebSocket to listen for payment notifications from BTCPay Server in real time.</div>
+            </div>
+
+            <div class="help-card help-card--extra" data-group="accordion">
+              <div class="help-card-question">Firmware</div>
+              <div class="help-card-answer">The software that runs directly on a microcontroller. For this project, you flash the BitcoinSwitch firmware onto the ESP32. No coding needed, just upload the pre-built file.</div>
+            </div>
+
+            <div class="help-card help-card--extra" data-group="accordion">
+              <div class="help-card-question">API key</div>
+              <div class="help-card-answer">A unique password that lets one service talk to another securely. You create a Blink API key so BTCPay Server can access your Blink wallet to check for payments.</div>
+            </div>
+
+            <div class="help-card help-card--extra" data-group="accordion">
+              <div class="help-card-question">Point of Sale (PoS)</div>
+              <div class="help-card-answer">A payment page where customers can scan a QR code and pay with Lightning. BTCPay Server generates this page for you. It is what you show on your phone or tablet during demos.</div>
+            </div>
+
+            <div class="help-card help-card--extra" data-group="accordion">
+              <div class="help-card-question">Satoshi (sat)</div>
+              <div class="help-card-answer">The smallest unit of Bitcoin. 1 Bitcoin = 100,000,000 satoshis. Lightning payments are usually counted in sats. A smoke machine demo might cost 10 to 100 sats.</div>
+            </div>
+
+          </div>
+
+          <button class="help-show-more" id="dict-show-more" aria-expanded="false">Show more</button>
+        </section>
+
+        <!-- Section 4: Links -->
+        <section class="help-section">
+          <h2 class="help-section-title">Links</h2>
+          <ul class="help-links-list">
+            <li>BitcoinSwitch Firmware: <a href="https://bitcoinswitch.lnbits.com/" target="_blank" rel="noopener">https://bitcoinswitch.lnbits.com/</a></li>
+            <li>BTCPay Server Docs: <a href="https://docs.btcpayserver.org/" target="_blank" rel="noopener">https://docs.btcpayserver.org/</a></li>
+            <li>Blink API: <a href="https://dev.blink.sv/" target="_blank" rel="noopener">https://dev.blink.sv/</a></li>
+            <li>ESP32 Pinout: <a href="https://randomnerdtutorials.com/esp32-pinout-reference-gpios/" target="_blank" rel="noopener">https://randomnerdtutorials.com/esp32-pinout-reference-gpios/</a></li>
+          </ul>
+        </section>
+
+      </div><!-- /help-scroll -->
+
     </div>
 
     
