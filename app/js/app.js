@@ -19,7 +19,13 @@ const Storage = {
 
   getProgress() {
     const raw = Storage.get('progress');
-    return raw ? JSON.parse(raw) : {};
+    if (!raw) return {};
+    try {
+      return JSON.parse(raw);
+    } catch (e) {
+      Storage.remove('progress');
+      return {};
+    }
   },
   setProgress(data) { Storage.set('progress', JSON.stringify(data)); },
 
