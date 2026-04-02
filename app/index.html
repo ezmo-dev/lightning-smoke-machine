@@ -354,7 +354,7 @@
 
             <div class="help-card" data-group="accordion">
               <div class="help-card-question">How much does it cost to build?</div>
-              <div class="help-card-answer">Around 50 to 70 euros for all components, depending on where you buy them and whether you already own some parts. The smoke machine itself is the most expensive item. Check the shopping list in Step 3 for exact prices and links.</div>
+              <div class="help-card-answer">Around 50 to 80 euros for all components, depending on where you buy them and whether you already own some parts. The smoke machine itself is the most expensive item. Check the shopping list in Step 3 for exact prices and links.</div>
             </div>
 
             <div class="help-card" data-group="accordion">
@@ -364,12 +364,12 @@
 
             <div class="help-card" data-group="accordion">
               <div class="help-card-question">Where can I buy the components?</div>
-              <div class="help-card-answer">We provide Amazon FR links in the shopping list (Step 3). If you are outside France, search the component name on your local Amazon or any electronics store. All components are common and easy to find worldwide.</div>
+              <div class="help-card-answer">We provide Amazon FR links in the shopping list (Step 3). If you are outside France, search the component name on your local Amazon or any electronics store such as AliExpress, Banggood, or Mouser Electronics. All components are common and easy to find worldwide.</div>
             </div>
 
             <div class="help-card help-card--extra" data-group="accordion">
               <div class="help-card-question">Can I use a different ESP32 board?</div>
-              <div class="help-card-answer">Yes, any ESP32-WROOM-32 development board with a USB port will work. The pin layout may differ slightly. Make sure it has GPIO pins 21 and 22 available. Avoid ESP32-S2 or ESP32-C3 variants as they are not compatible with BitcoinSwitch.</div>
+              <div class="help-card-answer">Yes, any ESP32-WROOM-32 development board with a USB port will work. The pin layout may differ slightly. Make sure it has GPIO pins 21 and 22 available. Avoid ESP32-S2 or ESP32-C3 variants as they are not compatible with BitcoinSwitch. If you use one of these, you will need to write your own C++ code.</div>
             </div>
 
             <div class="help-card help-card--extra" data-group="accordion">
@@ -384,7 +384,7 @@
 
             <div class="help-card help-card--extra" data-group="accordion">
               <div class="help-card-question">Do I need my own BTCPay Server?</div>
-              <div class="help-card-answer">No. This tutorial uses the public demo server at bitcoinswitch.lnbits.com. You do not need to install or host anything. If you already run your own BTCPay Server, you can use it instead.</div>
+              <div class="help-card-answer">Yes. You need a working BTCPay Server instance, either self-hosted or hosted by a provider. If you don't have one yet, follow this tutorial to set one up: planb.academy/tutorials/business/point-of-sale/btcpay-server.</div>
             </div>
 
             <div class="help-card help-card--extra" data-group="accordion">
@@ -404,7 +404,7 @@
 
             <div class="help-card help-card--extra" data-group="accordion">
               <div class="help-card-question">My ESP32 won't connect to WiFi</div>
-              <div class="help-card-answer">Make sure you are connecting to a 2.4 GHz network. The ESP32 does not support 5 GHz WiFi. Double check your WiFi password (no extra spaces). Try moving the ESP32 closer to your router. Restart the ESP32 by unplugging and replugging the USB cable.</div>
+              <div class="help-card-answer">Make sure you are connecting to a 2.4 GHz network. The ESP32 does not support 5 GHz WiFi. Double check your WiFi password and SSID (no extra spaces). Try moving the ESP32 closer to your router. Restart the ESP32 by unplugging and replugging the USB cable.</div>
             </div>
 
             <div class="help-card help-card--extra" data-group="accordion">
@@ -414,7 +414,7 @@
 
             <div class="help-card help-card--extra" data-group="accordion">
               <div class="help-card-question">The QR code doesn't appear on my Point of Sale</div>
-              <div class="help-card-answer">Make sure your Point of Sale is correctly configured in BTCPay Server. Check that you selected the right wallet (Blink via Lightning). Try refreshing the page. If using a phone, make sure you are connected to the internet.</div>
+              <div class="help-card-answer">Make sure your Point of Sale is correctly configured in BTCPay Server. In your Point of Sale settings, check that "Choose Point of Sale Style" is set to "Print Display" and click Save. Verify that you selected the right wallet (Blink via Lightning). Try refreshing the page. If using a phone, make sure you are connected to the internet.</div>
             </div>
 
             <div class="help-card help-card--extra" data-group="accordion">
