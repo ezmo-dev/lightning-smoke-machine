@@ -610,6 +610,20 @@ body {
   text-underline-offset: 2px;
   cursor: pointer;
   padding: 8px 16px;
+  transition: color 0.2s ease;
+}
+
+/* Start Over confirming state */
+.btn-lang--outline.startover--confirming {
+  background: #FFF0F0;
+  border-color: var(--color-error);
+  color: var(--color-error);
+  opacity: 1;
+}
+
+.btn-map-startover.startover--confirming {
+  color: var(--color-error);
+  text-decoration-color: var(--color-error);
 }
 
 /* Mascot image: scale() enlarges visually without affecting layout */

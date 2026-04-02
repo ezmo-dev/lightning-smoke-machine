@@ -159,21 +159,42 @@ function loadWelcomeBack() {
   screen.style.setProperty('--level-color', LEVEL_COLORS[level]);
 }
 
+// Double-tap confirmation for destructive "Start Over" actions
+function confirmStartOver(btn, originalText, onConfirm) {
+  if (btn.dataset.confirming === '1') {
+    clearTimeout(btn._confirmTimer);
+    delete btn.dataset.confirming;
+    btn.textContent = originalText;
+    btn.classList.remove('startover--confirming');
+    onConfirm();
+    return;
+  }
+  btn.dataset.confirming = '1';
+  btn.textContent = 'Tap again to confirm';
+  btn.classList.add('startover--confirming');
+  btn._confirmTimer = setTimeout(function () {
+    delete btn.dataset.confirming;
+    btn.textContent = originalText;
+    btn.classList.remove('startover--confirming');
+  }, 3000);
+}
+
 document.getElementById('btn-continue').addEventListener('click', function () {
   showScreen('screen-map');
   loadTutorialMap();
 });
 
 document.getElementById('btn-startover').addEventListener('click', function () {
-  // animate bar to zero first, then wipe everything and go to Screen 1
-  document.getElementById('wb-progress-fill').style.width = '0%';
-  setTimeout(function () {
-    Storage.remove('progress');
-    Storage.remove('language');
-    Storage.remove('pseudonym');
-    Storage.setLevel('00');
-    showScreen('screen-language');
-  }, 450); // slightly longer than the 0.4s CSS transition
+  confirmStartOver(this, 'START OVER', function () {
+    document.getElementById('wb-progress-fill').style.width = '0%';
+    setTimeout(function () {
+      Storage.remove('progress');
+      Storage.remove('language');
+      Storage.remove('pseudonym');
+      Storage.setLevel('00');
+      showScreen('screen-language');
+    }, 450);
+  });
 });
 
 document.getElementById('btn-wb-profile').addEventListener('click', function () {
@@ -282,14 +303,16 @@ document.getElementById('btn-map-help').addEventListener('click', function () {
 });
 
 document.getElementById('btn-map-startover').addEventListener('click', function () {
-  document.getElementById('map-overall-fill').style.width = '0%';
-  setTimeout(function () {
-    Storage.remove('progress');
-    Storage.remove('language');
-    Storage.remove('pseudonym');
-    Storage.setLevel('00');
-    showScreen('screen-language');
-  }, 450);
+  confirmStartOver(this, 'START OVER', function () {
+    document.getElementById('map-overall-fill').style.width = '0%';
+    setTimeout(function () {
+      Storage.remove('progress');
+      Storage.remove('language');
+      Storage.remove('pseudonym');
+      Storage.setLevel('00');
+      showScreen('screen-language');
+    }, 450);
+  });
 });
 
 
