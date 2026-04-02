@@ -33,12 +33,12 @@ const Storage = {
 /* ------------------- */
 /* Navigation */
 
-const history = [];
+const navHistory = [];
 
 function showScreen(screenId) {
   const current = document.querySelector('.screen.active');
   if (current) {
-    history.push(current.id);
+    navHistory.push(current.id);
     current.classList.remove('active');
   }
   const next = document.getElementById(screenId);
@@ -46,7 +46,7 @@ function showScreen(screenId) {
 }
 
 function goBack() {
-  const previous = history.pop();
+  const previous = navHistory.pop();
   if (!previous) return;
   const current = document.querySelector('.screen.active');
   if (current) current.classList.remove('active');
