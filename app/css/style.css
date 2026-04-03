@@ -22,6 +22,7 @@
   /* Action */
   --color-action: #F9A836;
   --color-action-text: #FFFFFF;
+  --color-text-accent: #585858;
 
   /* Level accent colors (card backgrounds per level) */
   --color-level-00: #FFFFFF;
@@ -214,8 +215,8 @@ body {
 
 .btn-lang--outline {
   background: #FFF8ED;
-  color: var(--color-action);
-  border: 2px solid var(--color-action);
+  color: var(--color-text-accent);
+  border: 2px solid var(--color-text-accent);
 }
 
 
@@ -822,7 +823,7 @@ body {
 .step-content h2 {
   font-size: 1.05rem;
   font-weight: 700;
-  color: var(--color-action);
+  color: var(--color-text-accent);
   margin: var(--space-md) 0 var(--space-xs);
   line-height: 1.35;
 }
@@ -953,8 +954,8 @@ body {
 
 .btn-mark-read--outline {
   background: #FFF8ED;
-  border: 2px solid var(--color-action);
-  color: var(--color-action);
+  border: 2px solid var(--color-text-accent);
+  color: var(--color-text-accent);
   opacity: 0.5;
 }
 
@@ -1395,7 +1396,7 @@ body {
   flex-shrink: 0;
   width: 24px;
   height: 24px;
-  border: 2px solid #F9A836;
+  border: 2px solid var(--color-action);
   border-radius: 6px;
   background: white;
   display: flex;
@@ -1480,7 +1481,7 @@ body {
 .help-section-title {
   font-size: 1.1rem;
   font-weight: 700;
-  color: var(--color-action);
+  color: var(--color-text-accent);
   margin-bottom: var(--space-sm);
 }
 
@@ -1650,7 +1651,7 @@ body {
   display: block;
   width: 100%;
   text-align: center;
-  color: var(--color-action);
+  color: var(--color-text-accent);
   font-family: 'Quicksand', sans-serif;
   font-weight: 600;
   font-size: 0.95rem;
@@ -1676,7 +1677,7 @@ body {
 }
 
 .help-links-list a {
-  color: var(--color-action);
+  color: var(--color-text-accent);
   text-decoration: none;
   word-break: break-all;
 }
