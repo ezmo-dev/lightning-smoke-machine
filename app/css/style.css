@@ -330,6 +330,16 @@ body {
     padding-top: 70px;
     gap: 12px;
   }
+  .pseudonym-input { top: 110px; }
+  .btn-letsgo       { margin-top: 100px; }
+}
+
+@media (max-height: 600px) {
+  .welcome-hero   { height: 38vh; }
+  .welcome-mascot { width: 160px; height: 160px; }
+  .welcome-form   { padding-top: 56px; gap: 8px; }
+  .pseudonym-input { top: 80px; }
+  .btn-letsgo       { margin-top: 76px; font-size: 1rem; min-height: 48px; }
 }
 
 .btn-letsgo:active {
@@ -1277,6 +1287,18 @@ body {
   .levelup-stats  { font-size: 0.76rem; }
   .levelup-text   { gap: 7px; }
   .btn-levelup-gotit { min-height: 50px; font-size: 1rem; }
+}
+
+/* Very short screens (iPhone SE 1st gen 568px, older Androids) */
+@media (max-height: 600px) {
+  .levelup-hero   { height: 40vh; }
+  .levelup-mascot { height: 80%; }
+  .levelup-fade   { height: 40px; margin-top: -40px; }
+  .levelup-title  { font-size: 1.2rem; }
+  .levelup-desc   { font-size: 0.82rem; }
+  .levelup-stats  { font-size: 0.72rem; }
+  .levelup-text   { gap: 4px; }
+  .btn-levelup-gotit { min-height: 44px; font-size: 0.95rem; }
 }
 
 /* ------------------- */
