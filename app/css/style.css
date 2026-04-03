@@ -843,7 +843,7 @@ body {
 
 .step-content p {
   font-size: 0.95rem;
-  font-weight: 400;
+  font-weight: 500;
   color: var(--color-text-tertiary);
   line-height: 1.6;
   margin: 0 0 var(--space-sm);
@@ -852,7 +852,7 @@ body {
 .step-content ul,
 .step-content ol {
   font-size: 0.95rem;
-  font-weight: 400;
+  font-weight: 500;
   color: var(--color-text-tertiary);
   line-height: 1.6;
   margin: 0 0 var(--space-sm);
