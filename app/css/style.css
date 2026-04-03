@@ -821,7 +821,6 @@ body {
   flex: 1;
   overflow-y: auto;
   padding: var(--space-md) var(--space-md) 0;
-  -webkit-overflow-scrolling: touch;
 }
 
 /* Content typography */
@@ -1001,7 +1000,6 @@ body {
 /* Responsive tables: horizontal scroll wrapper */
 .step-table-wrap {
   overflow-x: auto;
-  -webkit-overflow-scrolling: touch;
   margin: var(--space-sm) 0;
   border-radius: 8px;
 }
@@ -1319,7 +1317,6 @@ body {
 .safety-scroll {
   flex: 1;
   overflow-y: auto;
-  -webkit-overflow-scrolling: touch;
 }
 
 /* Hero: halo + mascot, scrolls with content */
@@ -1722,4 +1719,31 @@ body {
   background: linear-gradient(to bottom, rgba(255, 255, 255, 0), #ffffff);
   pointer-events: none;
   z-index: 5;
+}
+
+/* ------------------- */
+/* Toast notification */
+
+.app-toast {
+  position: fixed;
+  bottom: max(24px, env(safe-area-inset-bottom));
+  left: 50%;
+  transform: translateX(-50%) translateY(20px);
+  background: var(--color-bg-dark);
+  color: #FFFFFF;
+  font-family: 'Quicksand', sans-serif;
+  font-weight: 600;
+  font-size: 0.9rem;
+  padding: 10px 20px;
+  border-radius: var(--radius-pill);
+  white-space: nowrap;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.2s ease, transform 0.2s ease;
+  z-index: 100;
+}
+
+.app-toast.visible {
+  opacity: 1;
+  transform: translateX(-50%) translateY(0);
 }

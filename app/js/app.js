@@ -4,6 +4,18 @@
 
 
 /* ------------------- */
+/* Toast */
+
+let toastTimer = null;
+function showToast(msg, durationMs = 2000) {
+  const el = document.getElementById('app-toast');
+  el.textContent = msg;
+  el.classList.add('visible');
+  clearTimeout(toastTimer);
+  toastTimer = setTimeout(() => el.classList.remove('visible'), durationMs);
+}
+
+/* ------------------- */
 /* localStorage helpers */
 
 const Storage = {
@@ -279,8 +291,7 @@ function loadTutorialMap() {
 
     card.addEventListener('click', function () {
       if (state === 'completed') {
-        // TODO: navigate to step list for this level when Screen 4 is built
-        console.log('Level', index, 'completed - navigate to step list');
+        showToast('✓ Level already completed!');
       } else if (state === 'current') {
         showScreen('screen-step');
         const next = getNextStep();
