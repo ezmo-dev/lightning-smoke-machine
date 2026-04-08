@@ -882,6 +882,26 @@ body {
   object-fit: cover;
 }
 
+/* Image skeleton while loading */
+.step-img-card.img-skeleton,
+.step-img-plain.img-skeleton {
+  min-height: 180px;
+  background: linear-gradient(90deg, #F0EDE8 25%, #E8E3DC 50%, #F0EDE8 75%);
+  background-size: 200% 100%;
+  animation: skeleton-shimmer 1.2s ease-in-out infinite;
+  border-radius: 12px;
+}
+
+.step-img-card.img-skeleton img,
+.step-img-plain.img-skeleton img {
+  opacity: 0;
+}
+
+@keyframes skeleton-shimmer {
+  0%   { background-position: 200% 0; }
+  100% { background-position: -200% 0; }
+}
+
 /* Code block */
 .step-content pre,
 .step-content code {

@@ -378,10 +378,16 @@ function loadStep(stepNum) {
     wrap.appendChild(table);
   });
 
-  // Mark zoomable images
+  // Mark zoomable images + skeleton loading state
   document.querySelectorAll('#step-content .step-img-card img, #step-content .step-img-plain img').forEach(function (img) {
     if (isZoomableImage(img.getAttribute('src'))) {
       img.classList.add('img-zoomable');
+    }
+    if (!img.complete) {
+      img.parentElement.classList.add('img-skeleton');
+      img.addEventListener('load', function () {
+        img.parentElement.classList.remove('img-skeleton');
+      }, { once: true });
     }
   });
 
