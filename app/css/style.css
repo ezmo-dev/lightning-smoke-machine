@@ -71,6 +71,55 @@ button {
   background: none;
 }
 
+/* ------------------- */
+/* Keyboard focus indicator */
+
+*:focus {
+  outline: none;
+}
+
+*:focus-visible {
+  outline: 3px solid var(--color-text-accent);
+  outline-offset: 3px;
+}
+
+/* Pill-shaped buttons get a rounded outline */
+.btn-lang,
+.btn-letsgo,
+.btn-continue,
+.btn-mark-read,
+.btn-levelup-gotit,
+.btn-map-startover,
+.help-show-more,
+.help-submit-btn {
+  border-radius: var(--radius-pill);
+}
+
+.btn-lang:focus-visible,
+.btn-letsgo:focus-visible,
+.btn-continue:focus-visible,
+.btn-mark-read:focus-visible,
+.btn-levelup-gotit:focus-visible,
+.btn-map-startover:focus-visible,
+.help-show-more:focus-visible,
+.help-submit-btn:focus-visible {
+  outline-offset: 4px;
+  border-radius: var(--radius-pill);
+}
+
+/* Card-shaped elements */
+.help-card:focus-visible {
+  outline-offset: 2px;
+  border-radius: var(--radius-md);
+}
+
+/* Input fields */
+input:focus-visible,
+textarea:focus-visible {
+  outline: 3px solid var(--color-text-accent);
+  outline-offset: 0;
+}
+
 img {
   display: block;
   max-width: 100%;
