@@ -64,12 +64,12 @@ function showScreen(screenId) {
 }
 
 function goBack() {
-  const previous = navHistory.pop();
-  if (!previous) return;
   const current = document.querySelector('.screen.active');
   if (current) current.classList.remove('active');
-  const prev = document.getElementById(previous);
-  if (prev) prev.classList.add('active');
+  const previous = navHistory.pop();
+  const prev = previous ? document.getElementById(previous) : null;
+  const target = prev || document.getElementById('screen-map');
+  if (target) target.classList.add('active');
 }
 
 
