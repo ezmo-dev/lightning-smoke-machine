@@ -698,9 +698,12 @@ function loadLevelUp(levelNum) {
   hero.style.setProperty('--lu-mascot-x',    data.mascotX);
   hero.style.background = data.color;
 
-  // Title block: positioned from screen bottom, independent of heroHeight
+  // Title block: positioned from screen bottom, clamped so it never overlaps the hero zone
+  const heroHeightPx = window.innerHeight * parseFloat(data.heroHeight) / 100;
+  const maxTextBottom = window.innerHeight - heroHeightPx - 8; // 8px margin below hero
+  const safeTextBottom = Math.min(parseInt(data.textBottom), maxTextBottom);
   const heroText = document.getElementById('levelup-hero-text');
-  heroText.style.bottom    = data.textBottom;
+  heroText.style.bottom    = safeTextBottom + 'px';
   heroText.style.transform = 'translateX(' + data.textX + ')';
 
   // Gradient fade matches level color

@@ -1237,6 +1237,7 @@ body {
   background: var(--lu-color);
   flex-shrink: 0;
   position: relative;
+  overflow: hidden;
 }
 
 .levelup-help-btn {
@@ -1253,7 +1254,7 @@ body {
   transform: translateX(calc(-50% + var(--lu-mascot-x)));
   height: var(--lu-mascot-size);
   width: auto;
-  max-width: none; /* prevent CSS reset max-width:100% from squishing the mascot */
+  max-width: none; /* preserve aspect ratio — overflow is clipped by .levelup-hero */
   z-index: 1;
 }
 
