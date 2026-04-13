@@ -267,7 +267,7 @@ function loadTutorialMap() {
     const fraction = state === 'completed' ? '\u26A1/' + totalInLevel : doneInLevel + '/' + totalInLevel;
     const fillColor = state === 'locked' ? '#D0D0D0' : level.color;
 
-    const stepsText = 'Step ' + String(state === 'current' ? totalCompleted : level.lastStep).padStart(2, '0') + ' of ' + TOTAL_STEPS + ' completed';
+    const stepsText = doneInLevel + ' of ' + totalInLevel + ' step' + (totalInLevel > 1 ? 's' : '') + ' completed';
 
     const leftHTML = state === 'locked'
       ? '<div class="map-card-locked-icon">?</div>'
