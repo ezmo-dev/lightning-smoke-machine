@@ -150,6 +150,18 @@ body {
   overflow: hidden;
 }
 
+@media (min-width: 431px) {
+  body {
+    background: var(--color-bg-dark);
+  }
+
+  #app {
+    min-height: 100vh;
+    border-radius: 24px;
+    box-shadow: 0 8px 40px rgba(0, 0, 0, 0.35);
+  }
+}
+
 
 /* ------------------- */
 /* Screen system (show/hide) */
