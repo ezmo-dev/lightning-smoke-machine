@@ -134,6 +134,7 @@ body {
   background: var(--color-bg-main);
   color: var(--color-text-primary);
   min-height: 100vh;
+  overflow-x: hidden;
   -webkit-font-smoothing: antialiased;
 }
 
@@ -880,6 +881,7 @@ body {
 /* Scrollable content zone */
 .step-content {
   flex: 1;
+  min-width: 0; /* prevent flex item from overflowing when pre/code has long unbreakable content */
   overflow-y: auto;
   padding: var(--space-md) var(--space-md) 0;
 }
@@ -974,15 +976,17 @@ body {
 
 .step-content pre {
   padding: var(--space-sm);
-  overflow-x: auto;
   margin: var(--space-xs) 0 var(--space-sm);
+  max-width: 100%;
   white-space: pre-wrap;
   overflow-wrap: break-word;
-  word-break: break-word;
+  word-break: break-all;
 }
 
 .step-content code {
   padding: 2px 6px;
+  overflow-wrap: break-word;
+  word-break: break-all;
 }
 
 .step-content pre code {
