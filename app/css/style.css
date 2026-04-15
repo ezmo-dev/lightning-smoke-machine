@@ -580,6 +580,11 @@ body {
   flex-shrink: 0;
 }
 
+.map-topbar::before {
+  content: '';
+  min-width: 44px;
+}
+
 .map-overall-bar {
   flex: 1;
   height: 10px;
