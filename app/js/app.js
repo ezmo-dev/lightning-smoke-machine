@@ -213,9 +213,10 @@ document.getElementById('btn-startover').addEventListener('click', function () {
   });
 });
 
-document.getElementById('btn-wb-profile').addEventListener('click', function () {
-  showScreen('screen-profile');
-});
+// TODO: profile — wire btn-wb-profile when screen-profile is implemented
+// document.getElementById('btn-wb-profile').addEventListener('click', function () {
+//   showScreen('screen-profile');
+// });
 
 document.getElementById('btn-wb-help').addEventListener('click', function () {
   showScreen('screen-help');
@@ -309,9 +310,10 @@ function loadTutorialMap() {
   });
 }
 
-document.getElementById('btn-map-profile').addEventListener('click', function () {
-  showScreen('screen-profile');
-});
+// TODO: profile — wire btn-map-profile when screen-profile is implemented
+// document.getElementById('btn-map-profile').addEventListener('click', function () {
+//   showScreen('screen-profile');
+// });
 
 document.getElementById('btn-map-help').addEventListener('click', function () {
   showScreen('screen-help');
