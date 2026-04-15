@@ -139,16 +139,14 @@ document.getElementById('btn-letsgo').addEventListener('click', function () {
 
 const TOTAL_STEPS = 16;
 
-// Mascot + color upgrades when a full level is completed:
-// level-01 after step 2 (Welcome done)
-// level-02 after step 4 (Intro done)
-// level-03 after step 7 (Hardware done)
-// level-04 after step 12 (Software done)
-function getMascotLevel(completed) {
-  if (completed >= 12) return '04';
-  if (completed >= 7)  return '03';
-  if (completed >= 4)  return '02';
-  if (completed >= 2)  return '01';
+// Returns the mascot level string ('00'–'04') based on how many steps are completed.
+// Note: stepsCompleted is a count of done steps (0–16), NOT the stored level ('00'–'04').
+// Storage.getLevel() stores a string key used for colors/images — keep these two separate.
+function getMascotLevel(stepsCompleted) {
+  if (stepsCompleted >= 12) return '04';
+  if (stepsCompleted >= 7)  return '03';
+  if (stepsCompleted >= 4)  return '02';
+  if (stepsCompleted >= 2)  return '01';
   return '00';
 }
 
