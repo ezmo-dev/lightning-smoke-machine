@@ -730,6 +730,8 @@ function loadLevelUp(levelNum) {
 }
 
 function spawnConfetti(levelColor) {
+  if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+
   const container = document.getElementById('levelup-confetti');
   container.innerHTML = '';
 
