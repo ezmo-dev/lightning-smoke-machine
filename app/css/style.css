@@ -79,7 +79,7 @@ button {
 }
 
 *:focus-visible {
-  outline: 3px solid var(--color-text-accent);
+  outline: 3px solid var(--color-text-primary);
   outline-offset: 3px;
 }
 
@@ -102,9 +102,16 @@ button {
 .btn-levelup-gotit:focus-visible,
 .btn-map-startover:focus-visible,
 .help-show-more:focus-visible,
-.help-submit-btn:focus-visible {
+.help-submit-btn:focus-visible,
+.help-send-btn:focus-visible {
   outline-offset: 4px;
   border-radius: var(--radius-pill);
+}
+
+/* Circular icon buttons */
+.wb-icon-btn:focus-visible {
+  outline-offset: 2px;
+  border-radius: 50%;
 }
 
 /* Card-shaped elements */
@@ -116,7 +123,7 @@ button {
 /* Input fields */
 input:focus-visible,
 textarea:focus-visible {
-  outline: 3px solid var(--color-text-accent);
+  outline: 3px solid var(--color-text-primary);
   outline-offset: 0;
 }
 
@@ -1168,6 +1175,11 @@ body {
   display: flex;
   align-items: center;
   justify-content: center;
+}
+.lightbox-close:focus-visible {
+  outline-color: #fff;
+  outline-offset: 3px;
+  border-radius: 50%;
 }
 .lightbox-container {
   width: 100%;
