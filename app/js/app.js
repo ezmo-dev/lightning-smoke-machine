@@ -787,9 +787,10 @@ var lbScale    = 1;
 var lbLastDist = 0;
 var lbLastTap  = 0;
 
-function openLightbox(src) {
+function openLightbox(src, alt) {
   var img = document.getElementById('lightbox-img');
   img.src = src;
+  img.alt = alt || '';
   img.style.transition = '';
   img.style.transform  = 'scale(1)';
   lbScale = 1;
@@ -852,7 +853,7 @@ lbImg.addEventListener('touchend', function (e) {
 document.getElementById('step-content').addEventListener('click', function (e) {
   var img = e.target.closest('.step-img-card img');
   if (img && isZoomableImage(img.getAttribute('src'))) {
-    openLightbox(img.src);
+    openLightbox(img.src, img.alt);
   }
 });
 
