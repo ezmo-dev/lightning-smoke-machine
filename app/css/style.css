@@ -854,7 +854,7 @@ body {
   gap: var(--space-sm);
   padding: var(--space-sm) var(--space-md);
   background: white;
-  border-bottom: 1px solid #ffffff;
+
   flex-shrink: 0;
   z-index: 10;
 }
