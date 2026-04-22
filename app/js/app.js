@@ -114,7 +114,7 @@ document.getElementById('btn-en').addEventListener('click', function () {
 
 document.getElementById('btn-letsgo').addEventListener('click', function () {
   const input = document.getElementById('input-pseudonym');
-  const name = input.value.trim();
+  const name = input.value.trim().slice(0, 20);
 
   if (!name) {
     // shake the input to signal it is required
