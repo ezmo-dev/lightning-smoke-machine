@@ -478,7 +478,7 @@ document.getElementById('btn-mark-read').addEventListener('click', function () {
 });
 
 document.getElementById('btn-step-back').addEventListener('click', function () {
-  if (currentStep > 3) {
+  if (currentStep != null && currentStep > 3) {
     // Navigate to the previous step within the step screen
     loadStep(currentStep - 1);
   } else {
