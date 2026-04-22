@@ -1633,7 +1633,7 @@ body {
 /* Contact section box */
 .help-contact-section {
   background: #FFF8ED;
-  border: 2.0px solid var(--color-action);
+  border: 2px solid var(--color-action);
   border-radius: var(--radius-lg);
   padding: var(--space-md);
   margin-bottom: var(--space-lg);
