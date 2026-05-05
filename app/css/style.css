@@ -150,7 +150,7 @@ img {
 /* Base typography */
 
 body {
-  font-family: 'Quicksand', sans-serif;
+  font-family: 'Quicksand', system-ui, -apple-system, 'Segoe UI', sans-serif;
   font-weight: 500;
   background: var(--color-bg-main);
   color: var(--color-text-primary);
@@ -278,7 +278,7 @@ body {
 .btn-lang {
   width: 100%;
   min-height: 56px;
-  font-family: 'Quicksand', sans-serif;
+  font-family: 'Quicksand', system-ui, -apple-system, 'Segoe UI', sans-serif;
   font-weight: 700;
   font-size: 1.125rem;
   border-radius: var(--radius-pill);
@@ -371,7 +371,7 @@ body {
   width: auto;
   min-height: 56px;
   padding: 0 var(--space-md);
-  font-family: 'Quicksand', sans-serif;
+  font-family: 'Quicksand', system-ui, -apple-system, 'Segoe UI', sans-serif;
   font-weight: 500;
   font-size: 1rem;
   color: var(--color-text-primary);
@@ -391,7 +391,7 @@ body {
   width: 100%;
   min-height: 56px;
   margin-top: 120px; /* change to move button + info text up or down */
-  font-family: 'Quicksand', sans-serif;
+  font-family: 'Quicksand', system-ui, -apple-system, 'Segoe UI', sans-serif;
   font-weight: 700;
   font-size: 1.125rem;
   background: var(--color-action);
@@ -703,7 +703,7 @@ body {
 .btn-map-startover {
   background: none;
   border: none;
-  font-family: 'Quicksand', sans-serif;
+  font-family: 'Quicksand', system-ui, -apple-system, 'Segoe UI', sans-serif;
   font-weight: 600;
   font-size: 12px;
   color: var(--color-text-tertiary);
@@ -865,7 +865,7 @@ body {
   gap: 4px;
   background: none;
   border: none;
-  font-family: 'Quicksand', sans-serif;
+  font-family: 'Quicksand', system-ui, -apple-system, 'Segoe UI', sans-serif;
   font-weight: 600;
   font-size: 0.9rem;
   color: var(--color-text-primary);
@@ -1068,7 +1068,7 @@ body {
 .btn-mark-read {
   width: 100%;
   min-height: 56px;
-  font-family: 'Quicksand', sans-serif;
+  font-family: 'Quicksand', system-ui, -apple-system, 'Segoe UI', sans-serif;
   font-weight: 700;
   font-size: 1.1rem;
   border-radius: var(--radius-pill);
@@ -1379,7 +1379,7 @@ body {
 .btn-levelup-gotit {
   width: 100%;
   min-height: 56px;
-  font-family: 'Quicksand', sans-serif;
+  font-family: 'Quicksand', system-ui, -apple-system, 'Segoe UI', sans-serif;
   font-weight: 700;
   font-size: 1.1rem;
   background: var(--color-action);
@@ -1644,7 +1644,7 @@ body {
   width: 100%;
   min-height: 96px;
   padding: var(--space-sm);
-  font-family: 'Quicksand', sans-serif;
+  font-family: 'Quicksand', system-ui, -apple-system, 'Segoe UI', sans-serif;
   font-weight: 500;
   font-size: 0.95rem;
   color: var(--color-text-primary);
@@ -1677,7 +1677,7 @@ body {
   min-height: 48px;
   background: var(--color-action);
   color: var(--color-action-text);
-  font-family: 'Quicksand', sans-serif;
+  font-family: 'Quicksand', system-ui, -apple-system, 'Segoe UI', sans-serif;
   font-weight: 700;
   font-size: 1rem;
   border-radius: var(--radius-pill);
@@ -1791,7 +1791,7 @@ body {
   width: 100%;
   text-align: center;
   color: var(--color-text-accent);
-  font-family: 'Quicksand', sans-serif;
+  font-family: 'Quicksand', system-ui, -apple-system, 'Segoe UI', sans-serif;
   font-weight: 600;
   font-size: 0.95rem;
   padding: var(--space-sm) 0;
@@ -1848,7 +1848,7 @@ body {
   transform: translateX(-50%) translateY(20px);
   background: var(--color-bg-dark);
   color: #FFFFFF;
-  font-family: 'Quicksand', sans-serif;
+  font-family: 'Quicksand', system-ui, -apple-system, 'Segoe UI', sans-serif;
   font-weight: 600;
   font-size: 0.9rem;
   padding: 10px 20px;
