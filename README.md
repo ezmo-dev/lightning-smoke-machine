@@ -23,6 +23,14 @@
 | 🇺🇸 English | [docs/en/tutorial.md](./docs/en/tutorial.md) |
 | 🌍 28 languages | [Plan B Academy](https://planb.academy/fr/tutorials/business/others/lightning-smoke-machine-1a14c9e2-764f-4cbc-ab57-cf6c217a317d) |
 
+## Interactive Tutorial App
+
+Follow the tutorial step by step directly on your phone:
+
+👉 **[smoke-machine.ezmo.dev](https://smoke-machine.ezmo.dev)**
+
+No installation required. Available in English and French. Your progress is saved in your browser.
+
 ## How it works
 
 1. A Lightning invoice is displayed on screen
